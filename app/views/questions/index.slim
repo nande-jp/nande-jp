@@ -1,0 +1,14 @@
+= simple_form_for Question.new do |f|
+  = f.input :content, placeholder: '質問を書く', label: '質問内容'
+  = f.input :category, as: :select, collection: Question.categories.keys.to_a, label: 'カテゴリー選択'
+  = f.button :submit, class: 'btn btn-primary'
+
+hr
+
+- @questions.each do |question|
+  div
+    h3
+      = question.content
+
+    div.label.label-default = question.category
+  hr
