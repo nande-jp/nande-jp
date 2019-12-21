@@ -1,6 +1,6 @@
-class Question < ApplicationRecord
+class Answer < ApplicationRecord
   belongs_to :user
-  has_many :answers
+  belongs_to :question, counter_cache: true
 
   enum category: [:nature, :science, :philosophy]
 

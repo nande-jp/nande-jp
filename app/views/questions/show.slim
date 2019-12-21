@@ -1,1 +1,38 @@
-h1 = @question.content
+.row
+  .col-9
+    .card.mb-3
+      .card-body
+        div.small.mb-2
+          = @question.user.email
+
+        h1 = @question.content
+
+        div
+          span.badge.badge-secondary.mr-2 = @question.category
+          span.badge.badge-secondary = "回答数 #{@question.answers_count}"
+
+    .card.mb-3
+      .card-body
+        = simple_form_for Answer.new, method: :post, url: question_answers_path(params[:id]) do |f|
+          = f.input :content, placeholder: '回答を書く', label: '回答内容'
+          = f.input :category, as: :select, collection: Answer.categories.keys.to_a, label: 'カテゴリー選択'
+          = f.button :submit, class: 'btn btn-primary'
+
+    hr
+    h5 = "#{@question.answers_count}件の回答"
+
+    - @answers.each do |answer|
+      .card.mb-3
+        .card-body
+          div.small.mb-2
+            = answer.user.email
+          p
+            = answer.content
+
+          div.badge.badge-secondary = answer.category
+
+  .col-3
+
+
+
+

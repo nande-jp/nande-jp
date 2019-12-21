@@ -13,15 +13,19 @@
 
     hr
 
-    - @questions.each do |question|
+    - @answers.each do |answer|
       .card.mb-3
         .card-body
-          div
-            = question.user.email
-          h3
-            = link_to question.content, question
+          h4
+            = link_to answer.question.content, answer.question
+
+          hr
+
+          div.small.mb-2
+            = answer.user.email
+          p
+            = answer.content
 
           div
-            span.badge.badge-secondary.mr-2 = question.category
-            span.badge.badge-secondary = "回答数 #{question.answers_count}"
+            span.badge.badge-secondary.mr-2 = answer.category
   .col-3

@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_141818) do
+ActiveRecord::Schema.define(version: 2019_12_21_205341) do
+
+  create_table "answers", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "question_id"
+    t.integer "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
 
   create_table "questions", force: :cascade do |t|
     t.text "content"
@@ -18,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_141818) do
     t.integer "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "answers_count"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -29,6 +41,10 @@ ActiveRecord::Schema.define(version: 2019_12_18_141818) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.text "introduction"
+    t.string "prefecture"
+    t.string "city"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

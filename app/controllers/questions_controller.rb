@@ -17,6 +17,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @answers = @question.answers.order(created_at: :desc)
   end
 
   private
