@@ -1,15 +1,6 @@
 .row
   .col-9
-    .card.mb-3
-      .card-body
-        div.small.mb-2
-          = @question.user.email
-
-        h1 = @question.content
-
-        div
-          span.badge.badge-secondary.mr-2 = @question.category
-          span.badge.badge-secondary = "回答数 #{@question.answers_count}"
+    = render partial: 'shared/question_card', locals: {question: @question}
 
     .card.mb-3
       .card-body
@@ -22,15 +13,7 @@
     h5 = "#{@question.answers_count}件の回答"
 
     - @answers.each do |answer|
-      .card.mb-3
-        .card-body
-          div.small.mb-2
-            = answer.user.email
-          p
-            = answer.content
-
-          div.badge.badge-secondary = answer.category
-
+      = render partial: 'shared/answer_card', locals: {answer: answer}
   .col-3
 
 

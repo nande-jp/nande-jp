@@ -1,0 +1,47 @@
+div.mb-4
+  .row
+    .col-2
+      <div class="rounded-circle" style="height: 100px; width: 100px; background-color: #f5f5f5"></div>
+    .col-10
+      div
+        span.mr-2
+          h3
+            = @user.username
+        span フォロワー <strong>0人</strong> | フォロー中 <strong>0人</strong>
+
+      div
+        p 子どもが聞いたおもしろい質問とかを投稿していきます。
+
+      div
+        div.badge.badge-secondary.mr-2 4歳息子
+        div.badge.badge-secondary.mr-2 2歳娘
+        div.badge.badge-secondary.mr-2 東京都・世田谷区在住
+
+      div
+        span.mr-2
+          = "質問数 #{@user.questions.count} | "
+        span
+          = "回答数 #{@user.answers.count}"
+hr
+
+.row
+  .col-3
+    ul.list-group
+      li.list-group-item
+        = link_to "プロフィール", '#'
+      li.list-group-item
+        = link_to "質問", '#'
+      li.list-group-item
+        = link_to "回答", '#'
+      li.list-group-item
+        = link_to "ブックマーク", '#'
+      li.list-group-item
+        = link_to "シェア", '#'
+      li.list-group-item
+        = link_to "聞かれた", '#'
+  .col-9
+    - @questions.each do |question|
+      = render partial: 'shared/question_card', locals: {question: question}
+
+    - @answers.each do |answer|
+      = render partial: 'shared/answer_card', locals: {answer: answer}

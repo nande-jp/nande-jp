@@ -6,22 +6,12 @@
           a.nav-link = category
 
   .col-6
-    = simple_form_for Question.new do |f|
-      = f.input :content, placeholder: '質問を書く', label: '質問内容'
-      = f.input :category, as: :select, collection: Question.categories.keys.to_a, label: 'カテゴリー選択'
-      = f.button :submit, class: 'btn btn-primary'
-
-    hr
-
     - @questions.each do |question|
-      .card.mb-3
-        .card-body
-          div
-            = question.user.email
-          h3
-            = link_to question.content, question
-
-          div
-            span.badge.badge-secondary.mr-2 = question.category
-            span.badge.badge-secondary = "回答数 #{question.answers_count}"
+      = render partial: 'shared/question_card', locals: {question: question, show_answer_cta: true}
   .col-3
+    h5 人気の質問
+
+    ul.nav.flex-column
+      - @questions.each do |question|
+        li.nav-item
+          = link_to question.content, question, class: 'nav-link'
