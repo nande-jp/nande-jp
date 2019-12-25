@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   has_many :answers
 
   enum category: {nature: 1, science: 2, philosophy: 3, daily_occurances: 4}

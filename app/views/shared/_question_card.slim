@@ -1,7 +1,7 @@
 .card.mb-3
   .card-body
     div.small.mb-2
-      = link_to question.user.username, question.user
+      = link_to "#{question.user.username} | 質問数 #{question.user.questions_count} | 回答数 #{question.user.answers_count}", question.user
     h3
       = link_to question.content, question
 
