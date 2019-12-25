@@ -1,18 +1,27 @@
 .card.mb-3
   .card-body
     - unless defined?(hide_title) && hide_title
-      h4
-        = link_to answer.question.content, answer.question
+      h4.mb-3
+        = link_to answer.question.content, answer.question, class: 'text-body font-weight-bold'
 
-      hr
+    div.mb-2
+      <div class="rounded-circle mr-3" style="height: 36px; width: 36px; background-color: #f5f5f5; display: inline-block; vertical-align: middle;"></div>
+      span
+        = link_to "#{answer.user.username} 4歳息子、2歳娘のパパ", answer.user
 
-    div.small.mb-2
-      = link_to "#{answer.user.username} | 質問数 #{answer.user.questions_count} | 回答数 #{answer.user.answers_count}", answer.user
     p
       = answer.content
 
+    - if answer.points
+      .card.bg-light.mb-4.mt-4
+        .card-header.small
+          | 答えのポイント
+        .card-body
+          p
+            = answer.points
+
     div
-      span.badge.badge-secondary.mr-2 = answer.category
+      span.badge.badge-secondary.mr-2 = answer.category_name
       span.badge.badge-secondary.mr-2 =
 
       span

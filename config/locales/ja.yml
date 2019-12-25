@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    attributes:
+      answer:
+        categories:
+          for_parents:   ママ・パパ向け
+          for_children:  こども向け
+      question:
+        categories:
+          nature: 自然
+          science: 科学
+          philosophy: 哲学
+          daily_occurences: 日常

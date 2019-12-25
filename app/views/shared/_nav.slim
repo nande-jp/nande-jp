@@ -1,5 +1,6 @@
 nav.navbar.navbar-expand-lg.mb-4
-  a.navbar-brand href="/"  なんで
+  a.navbar-brand href="/"
+    img src="#{image_url('logo.png')}" height='36'
   button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
@@ -14,7 +15,9 @@ nav.navbar.navbar-expand-lg.mb-4
       ul.navbar-nav
         li.nav-item.dropdown
           a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-            = current_user.username
+            <div class="rounded-circle mr-3" style="height: 36px; width: 36px; background-color: #f5f5f5; display: inline-block; vertical-align: middle;"></div>
+            span
+              = current_user.username
           .dropdown-menu.dropdown-menu-lg-right aria-labelledby="navbarDropdown"
             = link_to 'プロフィール', user_path(current_user.id), class: 'dropdown-item'
             = link_to 'プロフィール編集', edit_user_registration_path, class: 'dropdown-item'

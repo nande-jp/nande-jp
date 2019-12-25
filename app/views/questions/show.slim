@@ -5,12 +5,13 @@
     .card.mb-3
       .card-body
         = simple_form_for Answer.new, method: :post, url: question_answers_path(params[:id]) do |f|
-          = f.input :content, placeholder: '回答を書く', label: '回答内容'
-          = f.input :category, as: :select, collection: Answer.categories.keys.to_a, label: 'カテゴリー選択'
-          = f.button :submit, class: 'btn btn-primary'
+          = f.input :content, placeholder: 'この質問に対する答えを書きましょう！', label: '答えの内容'
+          = f.input :category, as: :select, collection: Answer.category_map, label: '答えの種類', include_blank: false
+          = f.input :points, label: '答えのポイント', placeholder: '他のパパ・ママに答えのポイントを教えましょう！'
+          = f.button :submit, class: 'btn btn-primary', value: '答える'
 
     hr
-    h5 = "#{@question.answers_count}件の回答"
+    h5 = "#{@question.answers_count}件の答え"
 
     - @answers.each do |answer|
       = render partial: 'shared/answer_card', locals: {answer: answer, hide_title: true}

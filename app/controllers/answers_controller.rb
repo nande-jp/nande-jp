@@ -13,6 +13,6 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:category, :content)
+    params.require(:answer).permit(:category, :content, :points)
   end
 end

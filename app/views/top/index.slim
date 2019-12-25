@@ -3,13 +3,13 @@
     ul.nav.flex-column
       - Question.categories.keys.to_a.each do |category|
         li.nav-item
-          a.nav-link = category
+          a.nav-link = I18n.t("activerecord.attributes.question.categories.#{category}")
 
   .col-6
     = simple_form_for Question.new do |f|
       = f.input :content, placeholder: '質問を書く', label: '質問内容'
-      = f.input :category, as: :select, collection: Question.categories.keys.to_a, label: 'カテゴリー選択'
-      = f.button :submit, class: 'btn btn-primary'
+      = f.input :category, as: :select, collection: Question.category_map, label: 'カテゴリー選択', include_blank: false
+      = f.button :submit, class: 'btn btn-primary', value: '質問する'
 
     hr
 

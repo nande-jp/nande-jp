@@ -3,7 +3,7 @@
     ul.nav.flex-column
       - Question.categories.keys.to_a.each do |category|
         li.nav-item
-          a.nav-link = category
+          a.nav-link = I18n.t("activerecord.attributes.question.categories.#{category}")
 
   .col-6
     - @questions.each do |question|
