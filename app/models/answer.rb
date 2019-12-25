@@ -3,6 +3,7 @@ class Answer < ApplicationRecord
   belongs_to :question, counter_cache: true
 
   has_many :bookmarks
+  has_many :shares
 
   enum category: [:for_parents, :for_children]
 
@@ -10,6 +11,10 @@ class Answer < ApplicationRecord
 
   def bookmarked_by?(user)
     !user.bookmarks.find_by(answer_id: id).nil?
+  end
+
+  def shared_by?(user)
+    !user.shares.find_by(answer_id: id).nil?
   end
 
   def category_name

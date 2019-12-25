@@ -8,6 +8,6 @@ ul.list-group
   li.list-group-item
     = link_to "ブックマーク", user_bookmarks_path(user.id)
   li.list-group-item
-    = link_to "シェア", '#'
+    = link_to "シェア", user_shares_path(user.id)
   li.list-group-item
     = link_to "聞かれた", '#'

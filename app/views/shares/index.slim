@@ -1,0 +1,10 @@
+div.mb-4
+  = render partial: 'shared/profile/info', locals: {user: @user}
+hr
+
+.row
+  .col-3
+    = render partial: 'shared/profile/sidenav', locals: {user: @user}
+  .col-9
+    - @shares.each do |share|
+      = render partial: 'shared/answer_card', locals: {answer: share.answer, shared_by: share.user}

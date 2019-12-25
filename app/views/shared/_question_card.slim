@@ -3,7 +3,7 @@
     div.mb-2
       <div class="rounded-circle mr-3" style="height: 36px; width: 36px; background-color: #f5f5f5; display: inline-block; vertical-align: middle;"></div>
       span
-        = link_to "#{question.user.username} | 質問数 #{question.user.questions_count} | 回答数 #{question.user.answers_count}", question.user
+        = link_to "#{question.user.username}さん | 質問数 #{question.user.questions_count} | 回答数 #{question.user.answers_count}", question.user
     h3
       = link_to question.content, question, class: 'text-body font-weight-bold'
 

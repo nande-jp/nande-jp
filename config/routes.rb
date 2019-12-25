@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   resources :answers, only: [] do
     resources :bookmarks, only: [:create]
     resources :bookmark_deletions, only: [:create]
+    resources :shares, only: [:create]
+    resources :unshares, only: [:create]
   end
 
   resources :users do
     resources :bookmarks, only: [:index]
+    resources :shares, only: [:index]
   end
 end

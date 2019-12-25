@@ -1,3 +1,7 @@
+- if defined?(shared_by) && shared_by
+    div.text-muted.small.mb-1
+      | #{shared_by.username}さんがシェア
+
 .card.mb-3
   .card-body
     - unless defined?(hide_title) && hide_title
@@ -7,7 +11,7 @@
     div.mb-2
       <div class="rounded-circle mr-3" style="height: 36px; width: 36px; background-color: #f5f5f5; display: inline-block; vertical-align: middle;"></div>
       span
-        = link_to "#{answer.user.username} 4歳息子、2歳娘のパパ", answer.user
+        = link_to "#{answer.user.username}さん 4歳息子、2歳娘のパパ", answer.user
 
     p
       = answer.content
@@ -22,10 +26,14 @@
 
     div
       span.badge.badge-secondary.mr-2 = answer.category_name
-      span.badge.badge-secondary.mr-2 =
 
-      span
+      span.mr-2
         - if user_signed_in? && answer.bookmarked_by?(current_user)
           = link_to "#{answer.bookmarks_count} ブックマーク", answer_bookmark_deletions_path(answer_id: answer.id), method: :post
         - else
           = link_to "#{answer.bookmarks_count} ブックマーク", answer_bookmarks_path(answer_id: answer.id), method: :post
+      span
+        - if user_signed_in? && answer.shared_by?(current_user)
+          = link_to "#{answer.shares_count} シェア", answer_unshares_path(answer_id: answer.id), method: :post
+        - else
+          = link_to "#{answer.shares_count} シェア", answer_shares_path(answer_id: answer.id), method: :post

@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :questions
   has_many :answers
   has_many :bookmarks
+  has_many :shares
 end
