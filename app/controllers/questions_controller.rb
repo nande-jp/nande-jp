@@ -2,7 +2,11 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
 
   def index
-    @questions = Question.all
+    if params[:category]
+      @questions = Question.all.order(created_at: :desc)
+    else
+      @questions = Question.all.order(created_at: :desc)
+    end
   end
 
   def create

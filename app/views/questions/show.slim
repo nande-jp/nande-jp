@@ -13,7 +13,7 @@
     h5 = "#{@question.answers_count}件の回答"
 
     - @answers.each do |answer|
-      = render partial: 'shared/answer_card', locals: {answer: answer}
+      = render partial: 'shared/answer_card', locals: {answer: answer, hide_title: true}
   .col-3
 
 

@@ -1,0 +1,13 @@
+ul.list-group
+  li.list-group-item
+    = link_to "プロフィール", user_path(user.id)
+  li.list-group-item
+    = link_to "質問", '#'
+  li.list-group-item
+    = link_to "回答", '#'
+  li.list-group-item
+    = link_to "ブックマーク", user_bookmarks_path(user.id)
+  li.list-group-item
+    = link_to "シェア", '#'
+  li.list-group-item
+    = link_to "聞かれた", '#'

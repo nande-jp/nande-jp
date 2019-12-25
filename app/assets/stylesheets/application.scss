@@ -14,8 +14,32 @@
  *= require_self
  */
 
-@import "bootstrap";
+@import 'bootstrap_custom';
 
 html,body {
   font-family: "Noto Sans JP";
+}
+
+a {
+  color: #1681b2;
+}
+
+.navbar-brand {
+  color: #ff8080;
+}
+
+.navbar {
+  border-bottom: 1px solid #ff8080;
+}
+
+.navbar a {
+  color: #ff8080;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: #3a3a3a;
+}
+
+.subtext {
+  color: #989393
 }

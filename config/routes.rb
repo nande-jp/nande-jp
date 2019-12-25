@@ -7,5 +7,12 @@ Rails.application.routes.draw do
     resources :answers, only: [:create]
   end
 
-  resources :users
+  resources :answers, only: [] do
+    resources :bookmarks, only: [:create]
+    resources :bookmark_deletions, only: [:create]
+  end
+
+  resources :users do
+    resources :bookmarks, only: [:index]
+  end
 end

@@ -1,0 +1,13 @@
+div.mb-4
+  = render partial: 'shared/profile/info', locals: {user: @user}
+hr
+
+.row
+  .col-3
+    = render partial: 'shared/profile/sidenav', locals: {user: @user}
+  .col-9
+    h5.mb-3
+      = "#{@user.bookmarks.count}件のブックマーク"
+
+    - @bookmarks.each do |bookmark|
+      = render partial: 'shared/answer_card', locals: {answer: bookmark.answer}

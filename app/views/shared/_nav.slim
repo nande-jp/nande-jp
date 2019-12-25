@@ -1,4 +1,4 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4
+nav.navbar.navbar-expand-lg.mb-4
   a.navbar-brand href="/"  なんで
   button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
     span.navbar-toggler-icon
@@ -16,7 +16,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4
           a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
             = current_user.username
           .dropdown-menu.dropdown-menu-lg-right aria-labelledby="navbarDropdown"
-            a.dropdown-item href="#"  Action
+            = link_to 'プロフィール', user_path(current_user.id), class: 'dropdown-item'
             a.dropdown-item href="#"  Another action
             .dropdown-divider
             = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'

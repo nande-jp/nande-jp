@@ -1,9 +1,10 @@
 .card.mb-3
   .card-body
-    h4
-      = link_to answer.question.content, answer.question
+    - unless defined?(hide_title) && hide_title
+      h4
+        = link_to answer.question.content, answer.question
 
-    hr
+      hr
 
     div.small.mb-2
       = link_to answer.user.username, answer.user
@@ -12,3 +13,10 @@
 
     div
       span.badge.badge-secondary.mr-2 = answer.category
+      span.badge.badge-secondary.mr-2 =
+
+      span
+        - if user_signed_in? && answer.bookmarked_by?(current_user)
+          = link_to "#{answer.bookmarks_count} ブックマーク", answer_bookmark_deletions_path(answer_id: answer.id), method: :post
+        - else
+          = link_to "#{answer.bookmarks_count} ブックマーク", answer_bookmarks_path(answer_id: answer.id), method: :post
