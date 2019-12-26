@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_25_182933) do
+ActiveRecord::Schema.define(version: 2019_12_26_035704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2019_12_25_182933) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
+  create_table "asked_toos", force: :cascade do |t|
+    t.bigint "question_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_asked_toos_on_question_id"
+    t.index ["user_id"], name: "index_asked_toos_on_user_id"
+  end
+
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "answer_id"
     t.bigint "user_id"
@@ -38,6 +47,15 @@ ActiveRecord::Schema.define(version: 2019_12_25_182933) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+    t.index ["following_id"], name: "index_follows_on_following_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id"
@@ -45,6 +63,7 @@ ActiveRecord::Schema.define(version: 2019_12_25_182933) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "answers_count", default: 0
+    t.integer "asked_toos_count", default: 0
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -71,6 +90,8 @@ ActiveRecord::Schema.define(version: 2019_12_25_182933) do
     t.string "city"
     t.integer "questions_count", default: 0
     t.integer "answers_count", default: 0
+    t.integer "followers_count", default: 0
+    t.integer "followings_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :bookmarks, only: [:index]
     resources :shares, only: [:index]
+    resources :follows, only: [:create]
+    resources :unfollows, only: [:create]
   end
 end
