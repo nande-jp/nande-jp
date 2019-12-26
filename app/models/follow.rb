@@ -4,6 +4,8 @@ class Follow < ApplicationRecord
 
   after_commit :increment_counter!
 
+  validates_uniqueness_of :follower, scope: :following
+
   private
 
   def increment_counter!

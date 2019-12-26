@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_26_035704) do
+ActiveRecord::Schema.define(version: 2019_12_26_045748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_12_26_035704) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["answer_id"], name: "index_bookmarks_on_answer_id"
+    t.index ["user_id", "answer_id"], name: "index_bookmarks_on_user_id_and_answer_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 2019_12_26_035704) do
     t.integer "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["follower_id", "following_id"], name: "index_follows_on_follower_id_and_following_id", unique: true
     t.index ["follower_id"], name: "index_follows_on_follower_id"
     t.index ["following_id"], name: "index_follows_on_following_id"
   end
@@ -73,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_12_26_035704) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["answer_id"], name: "index_shares_on_answer_id"
+    t.index ["user_id", "answer_id"], name: "index_shares_on_user_id_and_answer_id", unique: true
     t.index ["user_id"], name: "index_shares_on_user_id"
   end
 
