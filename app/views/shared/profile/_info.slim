@@ -8,7 +8,7 @@
           = "#{user.username}さん"
       span.mr-2
         | フォロワー
-        strong = "#{user.followers_count}人"
+        strong = " #{user.followers_count}人"
         |   | フォロー中
         strong = " #{user.followings_count}人"
       - if user_signed_in? && current_user.is_following?(user)
