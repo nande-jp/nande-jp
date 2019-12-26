@@ -3,9 +3,9 @@ class QuestionsController < ApplicationController
 
   def index
     if params[:category]
-      @questions = Question.all.order(created_at: :desc)
+      @questions = Question.paginate(page: params[:page]).order(created_at: :desc)
     else
-      @questions = Question.all.order(created_at: :desc)
+      @questions = Question.paginate(page: params[:page]).order(created_at: :desc)
     end
   end
 
@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @answers = @question.answers.order(created_at: :desc)
+    @answers = @question.answers.order(created_at: :desc).paginate(page: params[:page])
   end
 
   private

@@ -29,6 +29,9 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
 gem 'slim-rails'
 gem 'simple_form'
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap4'
+
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
