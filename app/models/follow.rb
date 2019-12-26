@@ -10,12 +10,12 @@ class Follow < ApplicationRecord
   private
 
   def increment_counter!
-    follower.increment!(:followers_count)
-    following.increment!(:followings_count)
+    following.increment!(:followers_count)
+    follower.increment!(:followings_count)
   end
 
   def decrement_counter!
-    follower.decrement!(:followers_count)
-    following.decrement!(:followings_count)
+    following.decrement!(:followers_count)
+    follower.decrement!(:followings_count)
   end
 end
