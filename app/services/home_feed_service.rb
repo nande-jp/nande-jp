@@ -128,6 +128,8 @@ class HomeFeedService
       attributes['post_type'] = post_type
       attributes['display_type'] = display_type
 
+      # Create a timestamp index for ranking by recency
+      # refs: HomeFeedService#rank_by_recency
       if post_type == SHARES_BY_FOLLOWINGS_TYPE
         attributes['timestamp_index'] = item.created_at
       else
