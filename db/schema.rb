@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_26_045748) do
+ActiveRecord::Schema.define(version: 2020_01_03_144752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 2019_12_26_045748) do
     t.index ["answer_id"], name: "index_bookmarks_on_answer_id"
     t.index ["user_id", "answer_id"], name: "index_bookmarks_on_user_id_and_answer_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "children", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "age"
+    t.integer "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_children_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|

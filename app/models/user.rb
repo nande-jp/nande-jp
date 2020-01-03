@@ -20,6 +20,9 @@ class User < ApplicationRecord
   has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :followings, through: :following_relationships, source: :following
 
+  has_many :children
+  accepts_nested_attributes_for :children
+
   def is_following?(user)
     following_relationships.find_by(following_id: user.id)
   end

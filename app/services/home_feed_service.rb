@@ -51,7 +51,7 @@ class HomeFeedService
   end
 
   def get_shares_by_followings
-    return if @user.nil?
+    return [] if @user.nil?
 
     collection =  Share.joins('LEFT JOIN answers ON shares.answer_id = answers.id LEFT JOIN follows ON follows.following_id = shares.user_id')
                        .where('follows.follower_id = ?', @user.id)
@@ -62,7 +62,7 @@ class HomeFeedService
   end
 
   def get_answers_by_followings
-    return if @user.nil?
+    return if [] @user.nil?
 
     collection =  Answer.joins('LEFT JOIN follows ON follows.following_id = answers.user_id')
                         .where('follows.follower_id = ?', @user.id)
@@ -73,7 +73,7 @@ class HomeFeedService
   end
 
   def get_questions_by_followings
-    return if @user.nil?
+    return if [] @user.nil?
 
     collection =  Question.joins('LEFT JOIN follows ON follows.following_id = questions.user_id')
                           .where('follows.follower_id = ?', @user.id)
