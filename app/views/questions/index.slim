@@ -7,7 +7,7 @@
 
   .col-6
     - @questions.each do |question|
-      = render partial: 'shared/question_card', locals: {question: question, show_answer_cta: true}
+      = render partial: 'shared/question_card', locals: {question: question.attributes, user: question.user.attributes, show_answer_cta: true}
 
     = will_paginate @questions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 

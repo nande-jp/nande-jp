@@ -2,38 +2,42 @@
     div.text-muted.small.mb-1
       | #{shared_by.username}さんがシェア
 
+- if defined?(post_type) && post_type == HomeFeedService::SHARES_BY_FOLLOWINGS_TYPE
+    div.text-muted.small.mb-1
+      | #{user['username']}さんがシェア
+
 .card.mb-3
   .card-body
     - unless defined?(hide_title) && hide_title
       h4.mb-3
-        = link_to answer.question.content, answer.question, class: 'text-body font-weight-bold'
+        = link_to question['content'], question_path(answer['question_id']), class: 'text-body font-weight-bold'
 
     div.mb-2
       <div class="rounded-circle mr-3" style="height: 36px; width: 36px; background-color: #f5f5f5; display: inline-block; vertical-align: middle;"></div>
       span
-        = link_to "#{answer.user.username}さん 4歳息子、2歳娘のパパ", answer.user
+        = link_to "#{user['username']}さん 4歳息子、2歳娘のパパ", user_path(answer['user_id'])
 
     p
-      = answer.content
+      = answer['content']
 
-    - if answer.points
+    - if answer['points']
       .card.bg-light.mb-4.mt-4
         .card-header.small
           | 答えのポイント
         .card-body
           p
-            = answer.points
+            = answer['points']
 
     div
-      span.badge.badge-secondary.mr-2 = answer.category_name
+      span.badge.badge-secondary.mr-2 = answer['category_name']
 
       span.mr-2
-        - if user_signed_in? && answer.bookmarked_by?(current_user)
-          = link_to "#{answer.bookmarks_count} ブックマーク", answer_bookmark_deletions_path(answer_id: answer.id), method: :post
+        - if user_signed_in? && answer['is_bookmarked_by_current_user']
+          = link_to "#{answer['bookmarks_count']} ブックマーク", answer_bookmark_deletions_path(answer_id: answer['id']), method: :post
         - else
-          = link_to "#{answer.bookmarks_count} ブックマーク", answer_bookmarks_path(answer_id: answer.id), method: :post
+          = link_to "#{answer['bookmarks_count']} ブックマーク", answer_bookmarks_path(answer_id: answer['id']), method: :post
       span
-        - if user_signed_in? && answer.shared_by?(current_user)
-          = link_to "#{answer.shares_count} シェア", answer_unshares_path(answer_id: answer.id), method: :post
+        - if user_signed_in? && answer['is_shared_by_current_user']
+          = link_to "#{answer['shares_count']} シェア", answer_unshares_path(answer_id: answer['id']), method: :post
         - else
-          = link_to "#{answer.shares_count} シェア", answer_shares_path(answer_id: answer.id), method: :post
+          = link_to "#{answer['shares_count']} シェア", answer_shares_path(answer_id: answer['id']), method: :post

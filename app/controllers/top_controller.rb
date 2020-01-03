@@ -1,5 +1,5 @@
 class TopController < ApplicationController
   def index
-    @answers = Answer.all.order(created_at: :desc)
+    @posts = HomeFeedService.new(user: user_signed_in? ? current_user : nil, page: params.fetch(:page, 1)).get_feed
   end
 end

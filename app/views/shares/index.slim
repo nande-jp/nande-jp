@@ -7,4 +7,4 @@ hr
     = render partial: 'shared/profile/sidenav', locals: {user: @user}
   .col-9
     - @shares.each do |share|
-      = render partial: 'shared/answer_card', locals: {answer: share.answer, shared_by: share.user}
+      = render partial: 'shared/answer_card', locals: {answer: share.answer, user: share.user, question: share.answer.question, shared_by: share.user, is_shared_by_current_user: share.answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: share.answer.bookmarked_by?(user_signed_in? ? current_user : nil)}
