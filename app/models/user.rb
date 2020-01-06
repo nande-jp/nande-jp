@@ -21,7 +21,7 @@ class User < ApplicationRecord
   has_many :followings, through: :following_relationships, source: :following
 
   has_many :children
-  accepts_nested_attributes_for :children
+  accepts_nested_attributes_for :children, allow_destroy: true
 
   def is_following?(user)
     following_relationships.find_by(following_id: user.id)

@@ -31,6 +31,7 @@ gem 'slim-rails'
 gem 'simple_form'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap4'
+gem 'nested_form_fields'
 
 
 gem 'bootsnap', '>= 1.1.0', require: false

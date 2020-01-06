@@ -34,12 +34,12 @@
 
   <div class="form-group">
     <h3>子どもの年齢</h3>
-    <%= f.fields_for current_user.children.new do |children_fields| %>
-      <%= children_fields.label :age %>
-      <%= children_fields.number_field :age %>
-
-      <%= children_fields.label :gender %>
-      <%= children_fields.text_field :gender %>
+    <% current_user.children.build %>
+    <%= f.nested_fields_for :children do |ff| %>
+      <%= ff.number_field :age %>
+      <%= ff.text_field :gender  %>
+      <%= ff.remove_nested_fields_link %>
+      <%= f.add_nested_fields_link :children %>
     <% end %>
   </div>
 
