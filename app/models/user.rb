@@ -26,4 +26,9 @@ class User < ApplicationRecord
   def is_following?(user)
     following_relationships.find_by(following_id: user.id)
   end
+
+  def children_profile
+    return "" if children_count == 0
+    "#{children.map{|child| child.humanize}.join('、')}の親"
+  end
 end

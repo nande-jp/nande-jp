@@ -21,8 +21,9 @@
       p 子どもが聞いたおもしろい質問とかを投稿していきます。
 
     div
-      div.badge.badge-secondary.mr-2 4歳息子
-      div.badge.badge-secondary.mr-2 2歳娘
+      - user.children.each do |child|
+        div.badge.badge-secondary.mr-2
+          = "#{child.age}歳#{child.gender_noun}"
       div.badge.badge-secondary.mr-2 東京都・世田谷区在住
 
     div

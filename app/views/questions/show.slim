@@ -14,7 +14,7 @@
     h5 = "#{@question.answers_count}件の答え"
 
     - @answers.each do |answer|
-      = render partial: 'shared/answer_card', locals: {answer: answer, question: answer.question, user: answer.user, is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), hide_title: true}
+      = render partial: 'shared/answer_card', locals: {answer: answer, question: answer.question, user: answer.user, is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), hide_title: true, children_profile: answer.user.children_profile}
   .col-3
 
 

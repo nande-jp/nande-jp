@@ -11,3 +11,8 @@ ja:
           science: 科学
           philosophy: 哲学
           daily_occurences: 日常
+      child:
+          genders:
+            male: 男
+            female: 女
+            other: 他

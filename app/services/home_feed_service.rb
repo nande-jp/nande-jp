@@ -109,17 +109,18 @@ class HomeFeedService
       attributes = item.attributes
 
       if item.try(:user)
-        attributes = attributes.merge({"user" => item.user.attributes})
+        attributes = attributes.merge({'user' => item.user.attributes})
+        attributes['user']['children_profile'] = item.user.children_profile
       end
 
       if item.is_a?(Answer)
-        attributes = attributes.merge({"question" => item.question.attributes})
+        attributes = attributes.merge({'question' => item.question.attributes})
         attributes['is_bookmarked_by_current_user'] = item.bookmarked_by?(@user)
         attributes['is_shared_by_current_user'] = item.shared_by?(@user)
       end
 
       if item.is_a?(Share)
-        attributes = attributes.merge({"question" => item.answer.question.attributes})
+        attributes = attributes.merge({'question' => item.answer.question.attributes})
         attributes['is_bookmarked_by_current_user'] = item.answer.bookmarked_by?(@user)
         attributes['is_shared_by_current_user'] = item.answer.shared_by?(@user)
         attributes = attributes.merge({"answer" => item.answer.attributes})
