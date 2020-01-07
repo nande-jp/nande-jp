@@ -10,4 +10,4 @@ hr
       = "#{@user.bookmarks.count}件のブックマーク"
 
     - @bookmarks.each do |bookmark|
-      = render partial: 'shared/answer_card', locals: {answer: bookmark.answer, user: bookmark.user, question: bookmark.answer.question, is_shared_by_current_user: bookmark.answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: bookmark.answer.bookmarked_by?(user_signed_in? ? current_user : nil)}
+      = render partial: 'shared/answer_card', locals: {answer: bookmark.answer, user: bookmark.user, question: bookmark.answer.question, is_shared_by_current_user: bookmark.answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: bookmark.answer.bookmarked_by?(user_signed_in? ? current_user : nil), children_profile: bookmark.user.children_profile}
