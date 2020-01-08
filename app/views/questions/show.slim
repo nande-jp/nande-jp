@@ -1,3 +1,5 @@
+- set_meta_tags title: @question.content
+
 .row
   .col-9
     = render partial: 'shared/question_card', locals: {question: @question.attributes, user: @question.user.attributes}

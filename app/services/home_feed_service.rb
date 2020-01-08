@@ -14,7 +14,7 @@ class HomeFeedService
   def initialize(user:, page: 1)
     @user = user
     @feed = []
-    @page = page
+    @page = page.to_i
   end
 
   def get_feed

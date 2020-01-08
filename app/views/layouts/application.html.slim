@@ -1,13 +1,12 @@
 doctype html
 html
   head
-    title
-      | なんで | こどもの「なんで？」を大切にするコミュニティ
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet"
+    = display_meta_tags site: 'なんで', title: 'こどもの「なんで？」を大切にするコミュニティ', description: 'こどもの「なんで？」を大切にするコミュニティ | こどものなぞなぞ集 - 『なんで』', reverse: true
   body
     = render partial: 'shared/nav'
 
