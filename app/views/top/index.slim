@@ -20,4 +20,6 @@
         = render partial: 'shared/answer_card', locals: {answer: post, user: post['user'], question: post['question'], post_type: post['post_type'], is_bookmarked_by_current_user: post['is_bookmarked_by_current_user'], is_shared_by_current_user: post['is_shared_by_current_user'], children_profile: post['user']['children_profile']}
       - elsif post['display_type'] == HomeFeedService::SHARE_DISPLAY_TYPE
         = render partial: 'shared/answer_card', locals: {answer: post['answer'], user: post['user'], question: post['question'], post_type: post['post_type'], is_bookmarked_by_current_user: post['is_bookmarked_by_current_user'], is_shared_by_current_user: post['is_shared_by_current_user'], children_profile: post['user']['children_profile']}
+
+    = link_to 'もっと見る', root_path(page: params.fetch(:page, 1).to_i + 1), class: 'btn btn-primary btn-block btn-lg'
   .col-3
