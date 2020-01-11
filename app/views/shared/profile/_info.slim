@@ -18,7 +18,7 @@
 
 
     div
-      p 子どもが聞いたおもしろい質問とかを投稿していきます。
+      p 子どもが聞いたおもしろい疑問とかを投稿していきます。
 
     div
       - user.children.each do |child|
@@ -28,6 +28,6 @@
 
     div
       span.mr-2
-        = "質問数 #{user.questions.count} | "
+        = "疑問数 #{user.questions.count} | "
       span
         = "回答数 #{user.answers.count}"

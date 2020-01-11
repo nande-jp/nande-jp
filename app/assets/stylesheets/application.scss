@@ -17,23 +17,44 @@
 @import 'bootstrap_custom';
 
 html,body {
-  font-family: "Noto Sans JP";
+  font-family: 'Noto Sans JP', sans-serif;
 }
+
+button:focus {outline:0;}
+
 
 a {
   color: #1681b2;
 }
 
+nav {
+  background: #fff;
+}
+
 .navbar-brand {
   color: #ff8080;
+  font-weight: 900;
+  font-size: 24px !important;
 }
 
 .navbar {
-  border-bottom: 1px solid #ff8080;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 60px;
 }
 
 .navbar a {
   color: #ff8080;
+  font-size: 16px;
+}
+
+.card-header {
+  background: #fff;
+  border-bottom: 2px solid #ff8080;
+  font-weight: 900;
+}
+
+.card-body {
+  background: #fff;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -42,4 +63,37 @@ h1,h2,h3,h4,h5,h6 {
 
 .subtext {
   color: #989393
+}
+
+.badge {
+  user-select: none;
+  padding: 8px 12px;
+  background: #f7f7f7;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #666;
+  margin-right: 4px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.username-link {
+  color: #3a3a3a;
+}
+
+.answer-actions {
+  background: none;
+  border: none;
+  font-size: 12px;
+  padding: 0;
+
+  a {
+    color: #6c757d;
+  }
+}
+
+.btn-plain {
+  background: none;
+  border: none;
+  padding: 0;
 }

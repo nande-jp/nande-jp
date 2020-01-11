@@ -1,40 +1,41 @@
 nav.navbar.navbar-expand-lg.mb-4
-  a.navbar-brand href="/"
-    img src="#{image_url('logo.png')}" height='36'
-  button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
-    span.navbar-toggler-icon
-  #navbarSupportedContent.collapse.navbar-collapse
-    ul.navbar-nav.mr-auto
-      li.nav-item
-        = link_to "質問一覧", questions_path, class: 'nav-link'
-      li.nav-item
-        = link_to "人気の答え", questions_path, class: 'nav-link'
-      li.nav-item
-        = link_to "人気の質問", questions_path, class: 'nav-link'
+  .container
+    a.navbar-brand.nav-link href="/"
+      | nande
+    button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item
+          = link_to "疑問に答える", questions_path, class: 'nav-link'
+        li.nav-item
+          = link_to "人気の答え", questions_path, class: 'nav-link'
+        li.nav-item
+          = link_to "人気の疑問", questions_path, class: 'nav-link'
 
-    / form.form-inline.my-2.my-lg-0
-    /   input.form-control.mr-sm-2 aria-label="Search" placeholder="Search" type="search" /
-    /   button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  Search
-    - if user_signed_in?
-      ul.navbar-nav
-        li.nav-item.dropdown
-          a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-            <div class="rounded-circle mr-3" style="height: 36px; width: 36px; background-color: #f5f5f5; display: inline-block; vertical-align: middle;"></div>
-            span
-              = current_user.username
-          .dropdown-menu.dropdown-menu-lg-right aria-labelledby="navbarDropdown"
-            = link_to 'プロフィール', user_path(current_user.id), class: 'dropdown-item'
-            = link_to 'プロフィール編集', edit_user_registration_path, class: 'dropdown-item'
-            .dropdown-divider
-            = link_to 'ブックマーク', user_bookmarks_path(current_user.id), class: 'dropdown-item'
-            .dropdown-divider
-            = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'
-    - else
-      ul.navbar-nav
-        li.nav-item.dropdown
-          a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-            | メニュー
-          .dropdown-menu.dropdown-menu-lg-right aria-labelledby="navbarDropdown"
-            = link_to '登録する', new_user_registration_path, class: 'dropdown-item'
-            .dropdown-divider
-            = link_to 'ログインする', new_user_session_path, class: 'dropdown-item'
+      / form.form-inline.my-2.my-lg-0
+      /   input.form-control.mr-sm-2 aria-label="Search" placeholder="Search" type="search" /
+      /   button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  Search
+      - if user_signed_in?
+        ul.navbar-nav
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              <div class="rounded-circle mr-3" style="height: 36px; width: 36px; background-color: #f5f5f5; display: inline-block; vertical-align: middle;"></div>
+              span
+                = current_user.username
+            .dropdown-menu.dropdown-menu-lg-right aria-labelledby="navbarDropdown"
+              = link_to 'プロフィール', user_path(current_user.id), class: 'dropdown-item'
+              = link_to 'プロフィール編集', edit_user_registration_path, class: 'dropdown-item'
+              .dropdown-divider
+              = link_to 'ブックマーク', user_bookmarks_path(current_user.id), class: 'dropdown-item'
+              .dropdown-divider
+              = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+      - else
+        ul.navbar-nav
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              | メニュー
+            .dropdown-menu.dropdown-menu-lg-right aria-labelledby="navbarDropdown"
+              = link_to '登録する', new_user_registration_path, class: 'dropdown-item'
+              .dropdown-divider
+              = link_to 'ログインする', new_user_session_path, class: 'dropdown-item'

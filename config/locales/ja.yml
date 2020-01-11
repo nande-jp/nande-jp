@@ -16,3 +16,5 @@ ja:
             male: 男
             female: 女
             other: 他
+          gender: 性別
+          age: 年齢

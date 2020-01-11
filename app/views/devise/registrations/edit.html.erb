@@ -33,11 +33,17 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <h3>子どもの年齢</h3>
     <% current_user.children.build %>
     <%= f.add_nested_fields_link :children, '子どもを追加する' %>
     <br/>
     <%= f.nested_fields_for :children do |ff| %>
+      <%= ff.hidden_field :id %>
       <%= ff.label '年齢' %>
       <%= ff.number_field :age, class: 'form-control' %>
       <%= ff.label '性別' %>

@@ -7,12 +7,12 @@
 
   .col-6
     - @questions.each do |question|
-      = render partial: 'shared/question_card', locals: {question: question.attributes, user: question.user.attributes, show_answer_cta: true}
+      = render partial: 'shared/question_card', locals: {question: question.attributes.merge({"category_name" => question.category_name}), user: question.user.attributes, show_answer_cta: true, children_profile: question.user.children_profile}
 
     = will_paginate @questions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 
   .col-3
-    h5 人気の質問
+    h5 人気の疑問
 
     ul.nav.flex-column
       - @questions.each do |question|

@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  mount_uploader :avatar, AvatarUploader
+
   validates_presence_of :username
   validates_uniqueness_of :username
 
@@ -21,7 +23,8 @@ class User < ApplicationRecord
   has_many :followings, through: :following_relationships, source: :following
 
   has_many :children
-  accepts_nested_attributes_for :children, allow_destroy: true
+  accepts_nested_attributes_for :children, allow_destroy: true, reject_if: ->(child){ child['age'].blank? && child['gender'].blank? }
+
 
   def is_following?(user)
     following_relationships.find_by(following_id: user.id)

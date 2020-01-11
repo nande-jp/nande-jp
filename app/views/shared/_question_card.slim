@@ -1,16 +1,17 @@
 .card.mb-3
   .card-body
-    div.mb-2
-      <div class="rounded-circle mr-3" style="height: 36px; width: 36px; background-color: #f5f5f5; display: inline-block; vertical-align: middle;"></div>
-      span
-        = link_to "#{user['username']}さん | 質問数 #{user['questions_count']} | 回答数 #{user['answers_count']}", user_path(question['user_id'])
-    h3
+    div.mb-3
+      span.badge.badge-secondary
+        = question['category_name']
+    h4.mb-3
       = link_to question['content'], question_path(question['id']), class: 'text-body font-weight-bold'
+
+    div.mb-3
+      <div class="rounded-circle mr-2" style="height: 36px; width: 36px; background-color: #f5f5f5; display: inline-block; vertical-align: text-bottom;"></div>
+      div style='display: inline-block'
+        div = link_to "#{user['username']}さん #{children_profile}", user_path(question['user_id']), class: 'username-link'
+        .small.subtext = "#{question['created_at'].strftime("%Y年%m月%d日")}に投稿"
 
     - if defined?(show_answer_cta) && show_answer_cta
       div.mt-4.mb-4
         = link_to "答える", question_path(question['id']), class: 'btn btn-primary'
-
-    div
-      span.badge.badge-secondary.mr-2 = question['category_name']
-      span.badge.badge-secondary = "回答数 #{question['answers_count']}"

@@ -126,6 +126,10 @@ class HomeFeedService
         attributes = attributes.merge({"answer" => item.answer.attributes})
       end
 
+      if item.is_a?(Question)
+        attributes = attributes.merge({"category_name" => item.category_name})
+      end
+
       attributes['post_type'] = post_type
       attributes['display_type'] = display_type
 

@@ -5,7 +5,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet"
+    link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap&subset=japanese" rel="stylesheet"
     = display_meta_tags site: 'なんで', title: 'こどもの「なんで？」を大切にするコミュニティ', description: 'こどもの「なんで？」を大切にするコミュニティ | こどものなぞなぞ集 - 『なんで』', reverse: true
   body
     = render partial: 'shared/nav'
@@ -13,7 +13,7 @@ html
     .container
       = yield
 
-  footer.font-small.mt-4
+  footer.font-small
     /! Footer Elements
     .container
       /! Call to action
