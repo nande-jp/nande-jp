@@ -7,7 +7,7 @@ class Answer < ApplicationRecord
 
   enum category: [:for_parents, :for_children]
 
-  validates_presence_of :content, :category
+  validates_presence_of :content
 
   def bookmarked_by?(user)
     return false unless user

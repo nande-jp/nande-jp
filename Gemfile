@@ -34,6 +34,8 @@ gem 'will_paginate-bootstrap4'
 gem 'nested_form_fields'
 gem 'meta-tags'
 gem 'carrierwave', '~> 2.0'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'rails-i18n'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
