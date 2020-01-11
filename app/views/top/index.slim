@@ -11,7 +11,7 @@
       .card
         .card-body
           div.mb-1
-            <div class="rounded-circle mr-2" style="height: 24px; width: 24px; background-color: #f5f5f5; display: inline-block; vertical-align: middle;"></div>
+            = image_tag(current_user.avatar.url, height: 24, width: 24, style: 'display: inline-block; vertical-align: middle', class: 'mr-2 rounded-circle')
             div style='display: inline-block'
               div = link_to "#{current_user.username}さん #{current_user.children_profile}", user_path(current_user.id), class: 'username-link'
 

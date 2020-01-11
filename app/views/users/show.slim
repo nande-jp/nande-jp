@@ -8,8 +8,6 @@ hr
   .col-3
     = render partial: 'shared/profile/sidenav', locals: {user: @user}
   .col-9
-    / - @questions.each do |question|
-    /   = render partial: 'shared/question_card', locals: {question: question}
 
     - @answers.each do |answer|
-      = render partial: 'shared/answer_card', locals: {answer: answer, question: answer.question, user: answer.user, is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), children_profile: answer.user.children_profile}
+      = render partial: 'shared/answer_card', locals: {answer: answer, question: answer.question, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), children_profile: answer.user.children_profile}

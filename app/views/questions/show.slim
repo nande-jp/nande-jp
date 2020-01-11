@@ -10,7 +10,7 @@
         = link_to @question.content, question_path(@question.id), class: 'text-body font-weight-bold'
 
       div.mb-3
-        <div class="rounded-circle mr-2" style="height: 36px; width: 36px; background-color: #f5f5f5; display: inline-block; vertical-align: text-bottom;"></div>
+        = image_tag(@question.user.avatar.url, height: 36, width: 36, style: 'display: inline-block; vertical-align: text-bottom', class: 'mr-2 rounded-circle')
         div style='display: inline-block'
           div = link_to "#{@question.user.username}さん #{@question.user.children_profile}", user_path(@question.user_id), class: 'username-link'
           .small.subtext = "#{@question.created_at.strftime("%Y年%m月%d日")}に投稿"
@@ -38,7 +38,7 @@
       - @answers.each do |answer|
         hr
         div.mb-4.mt-4
-          = render partial: 'shared/answer_content', locals: {answer: answer, question: answer.question, user: answer.user, is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), hide_title: true, children_profile: answer.user.children_profile}
+          = render partial: 'shared/answer_content', locals: {answer: answer, question: answer.question, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), hide_title: true, children_profile: answer.user.children_profile}
   .col-3
 
 

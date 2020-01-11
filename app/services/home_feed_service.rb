@@ -111,6 +111,7 @@ class HomeFeedService
       if item.try(:user)
         attributes = attributes.merge({'user' => item.user.attributes})
         attributes['user']['children_profile'] = item.user.children_profile
+        attributes['user']['avatar_url'] = item.user.avatar.url
       end
 
       if item.is_a?(Answer)
