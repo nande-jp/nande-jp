@@ -19,7 +19,7 @@ gender_mappings = {
 CSV.foreach(Rails.root.join('lib/tasks/content.csv'), headers: true) do |row|
   name = Faker::Name.unique.name
 
-  user = User.create!(email: Faker::Internet.email, username: name, password: 'password')
+  user = User.create!(email: Faker::Internet.email, username: name, password: 'password', remote_avatar_url: Faker::Avatar.image)
   user.children.create!(age: row['age'].to_i, gender: gender_mappings[row['gender']])
 
   question = user.questions.create!(category: category_mappings[row['category']], content: row['content'])
