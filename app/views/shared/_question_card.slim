@@ -2,16 +2,16 @@
   .card-body
     div.mb-3
       span.badge.badge-secondary
-        = question['category_name']
-    h4.mb-3
-      = link_to question['content'], question_path(question['id']), class: 'text-body font-weight-bold'
+        = link_to question['category_name'], category_path(question['category']), style: 'color: inherit'
 
     div.mb-3
       = image_tag(user['avatar_url'], height: 36, width: 36, style: 'display: inline-block; vertical-align: text-bottom', class: 'mr-2 rounded-circle')
       div style='display: inline-block'
         div = link_to "#{user['username']}さん #{children_profile}", user_path(question['user_id']), class: 'username-link'
         .small.subtext = "#{question['created_at'].strftime("%Y年%m月%d日")}に投稿"
+    h4.mb-3
+      = link_to question['content'], question_path(question['id']), class: 'text-body font-weight-bold'
 
     - if defined?(show_answer_cta) && show_answer_cta
       div.mt-4.mb-4
-        = link_to "この疑問に答える", question_path(question['id']), class: 'btn btn-primary btn-block'
+        = link_to "この疑問に答える", question_path(question['id']), class: 'btn btn-pop btn-lg shadow'

@@ -27,6 +27,12 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        genders:
+          male: 男
+          female: 女
+          other: 他
+        gender: 性別
+        age: 年齢
         children:
           age: 年齢
           gender: 性別

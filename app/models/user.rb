@@ -25,6 +25,13 @@ class User < ApplicationRecord
   has_many :children
   accepts_nested_attributes_for :children, allow_destroy: true, reject_if: ->(child){ child['age'].blank? && child['gender'].blank? }
 
+  enum gender: [:male, :female]
+
+  def self.gender_map
+    genders.map do |gender, _|
+      [I18n.t("activerecord.attributes.#{model_name.i18n_key}.genders.#{gender}"), gender]
+    end
+  end
 
   def is_following?(user)
     following_relationships.find_by(following_id: user.id)
@@ -32,6 +39,14 @@ class User < ApplicationRecord
 
   def children_profile
     return "" if children_count == 0
-    "#{children.map{|child| child.humanize}.join('、')}の親"
+    "#{children.map{|child| child.humanize}.join('、')}の#{parent_name}"
+  end
+
+  private
+
+  def parent_name
+    return 'パパ' if male?
+    return 'ママ' if female?
+    '親'
   end
 end

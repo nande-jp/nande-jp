@@ -5,7 +5,7 @@
     .mb-4
       div.mb-3
         span.badge.badge-secondary
-          = @question.category_name
+          = link_to @question.category_name, category_path(@question.category), style: 'color: inherit'
       h4.mb-3
         = link_to @question.content, question_path(@question.id), class: 'text-body font-weight-bold'
 
@@ -15,7 +15,7 @@
           div = link_to "#{@question.user.username}さん #{@question.user.children_profile}", user_path(@question.user_id), class: 'username-link'
           .small.subtext = "#{@question.created_at.strftime("%Y年%m月%d日")}に投稿"
 
-      button type="button" class="btn btn-primary" data-toggle="modal" data-target="#answer-form"
+      button type="button" class="btn btn-pop btn-lg shadow" data-toggle="modal" data-target="#answer-form"
         | 答え方を投稿する
 
       #answer-form.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"

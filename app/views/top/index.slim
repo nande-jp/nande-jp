@@ -11,8 +11,12 @@
             div style='display: inline-block'
               div = link_to "#{current_user.username}さん #{current_user.children_profile}", user_path(current_user.id), class: 'username-link'
 
-          button type="button" class='btn-plain' data-toggle="modal" data-target="#question-form"
-            h4 style='font-weight: 700;color: #999;' こどもの疑問を入力
+          button type="button" class='btn-plain mt-3' data-toggle="modal" data-target="#question-form"
+            h4 style='font-weight: 700;color: #999;' 最近こどもに聞かれた質問を投稿する
+
+          div.mt-2
+            button type="button" class='btn btn-pop btn-lg btn-block shadow' data-toggle="modal" data-target="#question-form"
+              |投稿してみる
 
           #question-form.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"
             .modal-dialog role="document"

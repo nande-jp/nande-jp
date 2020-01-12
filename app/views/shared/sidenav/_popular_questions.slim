@@ -4,5 +4,5 @@
   .card-body
     ul
       - popular_questions.each do |question|
-        li
+        li.mb-3
           = link_to question.content, question

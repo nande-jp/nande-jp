@@ -8,6 +8,12 @@
           = f.label :username
           = f.text_field :username, autofocus: true, class: 'form-control'
         .form-group
+          = f.label :age
+          = f.number_field :age, placeholder: 'あなたの年齢を記入してください', class: 'form-control'
+        .form-group
+          = f.label :gender
+          = f.select :gender, User.gender_map, {include_blank: '性別を選ぶ'}, {class: 'custom-select'}
+        .form-group
           = f.label :email
           = f.email_field :email, autofocus: false, autocomplete: 'email', class: 'form-control'
         .form-group

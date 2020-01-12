@@ -5,6 +5,9 @@
     = render partial: 'shared/sidenav/categories'
 
   .col-sm-12.col-md-6
+    h1.h2.font-weight-bold.mb-4
+      = "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}系の最新の疑問"
+
     - @questions.each do |question|
       = render partial: 'shared/question_card', locals: {question: question.attributes.merge({"category_name" => question.category_name}), user: question.user.attributes.merge({"avatar_url" => question.user.avatar.url}), show_answer_cta: true, children_profile: question.user.children_profile}
 
