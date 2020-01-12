@@ -1,0 +1,8 @@
+.card
+  .card-header
+    | 人気の疑問
+  .card-body
+    ul
+      - popular_questions.each do |question|
+        li
+          = link_to question.content, question

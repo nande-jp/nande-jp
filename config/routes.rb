@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   root to: 'top#index'
 
   resources :questions, shallow: true do
     resources :answers, only: [:create]
   end
+
+  resources :categories
 
   resources :answers, only: [] do
     resources :bookmarks, only: [:create]

@@ -3,10 +3,12 @@ class QuestionsController < ApplicationController
 
   def index
     if params[:category]
-      @questions = Question.paginate(page: params[:page]).order(created_at: :desc)
+      @questions = Question.where(category: params[:category]).order(created_at: :desc).paginate(page: params[:page])
     else
       @questions = Question.paginate(page: params[:page]).order(created_at: :desc)
     end
+
+    @popular_questions = Question.order(answers_count: :desc).limit(10)
   end
 
   def create
@@ -22,6 +24,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answers = @question.answers.order(created_at: :desc).paginate(page: params[:page])
+    @related_questions = Question.where(category: @question.category).order(answers_count: :desc).order('RANDOM()').limit(20)
   end
 
   private

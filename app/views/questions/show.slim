@@ -1,7 +1,7 @@
 - set_meta_tags title: @question.content
 
 .row
-  .col-8
+  .col-md-8.col-sm-12
     .mb-4
       div.mb-3
         span.badge.badge-secondary
@@ -16,7 +16,7 @@
           .small.subtext = "#{@question.created_at.strftime("%Y年%m月%d日")}に投稿"
 
       button type="button" class="btn btn-primary" data-toggle="modal" data-target="#answer-form"
-        | この疑問に答える
+        | 答え方を投稿する
 
       #answer-form.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"
         .modal-dialog role="document"
@@ -27,19 +27,27 @@
                 span aria-hidden="true"  &times;
             .modal-body
               = simple_form_for Answer.new, method: :post, url: question_answers_path(params[:id]) do |f|
-                = f.input :content, placeholder: 'この疑問に対する答えを書きましょう！', label: '答えの内容'
-                = f.input :category, as: :select, collection: Answer.category_map, label: '答えの種類', include_blank: false
+                = f.input :content, placeholder: 'こどもへの答え方を書きましょう', label: 'こどもへの答え方を書く'
                 = f.input :points, label: '答えのポイント', placeholder: '他のパパ・ママに答えのポイントを教えましょう！'
-                = f.button :submit, class: 'btn btn-primary btn-block', value: '答える'
+                = f.button :submit, class: 'btn btn-primary btn-block', value: '答えを投稿する'
 
     .mt-4
       h4 = "#{@question.answers_count}件の答え"
+      hr
 
       - @answers.each do |answer|
-        hr
         div.mb-4.mt-4
           = render partial: 'shared/answer_content', locals: {answer: answer, question: answer.question, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), hide_title: true, children_profile: answer.user.children_profile}
-  .col-3
+        hr
+  .col-md-4.col-sm-12
+    .card
+      .card-header
+        | 関連の疑問
+      .card-body
+        ul
+          - @related_questions.each do |question|
+            li
+              = link_to question.content, question_path(question.id)
 
 
 

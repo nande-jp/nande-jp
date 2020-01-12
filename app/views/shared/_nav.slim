@@ -1,6 +1,6 @@
 nav.navbar.navbar-expand-lg.mb-4
   .container
-    a.navbar-brand.nav-link href="/"
+    a.navbar-brand href="/"
       | nande
     button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
       span.navbar-toggler-icon
@@ -8,10 +8,6 @@ nav.navbar.navbar-expand-lg.mb-4
       ul.navbar-nav.mr-auto
         li.nav-item
           = link_to "疑問に答える", questions_path, class: 'nav-link'
-        li.nav-item
-          = link_to "人気の答え", questions_path, class: 'nav-link'
-        li.nav-item
-          = link_to "人気の疑問", questions_path, class: 'nav-link'
 
       / form.form-inline.my-2.my-lg-0
       /   input.form-control.mr-sm-2 aria-label="Search" placeholder="Search" type="search" /
