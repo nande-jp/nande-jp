@@ -1,0 +1,44 @@
+.row.justify-content-center
+  .col-sm-12.col-md-6
+    .card
+      .card-header
+        | アカウント編集
+      .card-body
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = bootstrap_devise_error_messages!
+            = f.hidden_field :is_onboarding, value: 1
+          / .form-group
+          /   = f.label :description
+          /   = f.text_field :description, placeholder: '簡単な紹介文を記入してください', class: 'form-control'
+          .form-group
+            = f.label :age, 'あなたの年齢'
+            = f.number_field :age, placeholder: 'あなたの年齢を記入してください', required: true, class: 'form-control'
+          .form-group
+            = f.label :gender, 'あなたの性別'
+            = f.select :gender, User.gender_map, {}, {class: 'custom-select', required: true}
+          .form-group
+            = f.label :avatar
+            = f.file_field :avatar, class: 'form-control'
+          .card.mb-4
+            .card-body
+              .form-group
+                h3
+                  | 子どもの年齢を設定する
+                .subtext.mb-4
+                  | 他の方が参考にできるように、お子さんの性別と年齢を表示します。
+                - resource.children.build
+
+                = f.nested_fields_for :children do |ff|
+                  = ff.hidden_field :id
+                  .row
+                    .col-sm-5.col-md-3
+                      = ff.number_field :age, placeholder: '年齢', class: 'form-control'
+                    .col-sm-5.col-md-5
+                      = ff.select :gender, Child.gender_map, {include_blank: '性別を選ぶ'}, {class: 'custom-select'}
+                    .col-sm-2.col-md-4.text-right
+                      = ff.remove_nested_fields_link '削除する', style: 'vertical-align: -webkit-baseline-middle; width: 100%;'
+                  hr
+                .mb-2 style='height: 20px;'
+                  = f.add_nested_fields_link :children, '子どもを追加する', class: 'btn btn-secondary btn-sm float-right'
+          .form-group
+            = f.submit 'アカウントを作成する', class: 'btn btn-pop btn-block shadow'

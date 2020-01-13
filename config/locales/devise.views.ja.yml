@@ -28,8 +28,8 @@ ja:
         unlock_token: ロック解除用トークン
         updated_at: 更新日
         genders:
-          male: 男
-          female: 女
+          male: パパ
+          female: ママ
           other: 他
         gender: 性別
         age: 年齢
