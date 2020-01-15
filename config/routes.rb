@@ -24,4 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :onboarding
+
+  get 'privacy', to: 'pages#privacy'
+  get 'terms', to: 'pages#terms'
 end

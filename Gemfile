@@ -38,6 +38,7 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'rails-i18n'
 gem "figaro"
 gem "fog-aws"
+gem 'omniauth-facebook'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

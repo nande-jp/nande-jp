@@ -17,14 +17,14 @@
         = link_to 'フォローする', user_follows_path(user.id), class: 'btn btn-sm btn-primary', method: :post
 
 
-    div
-      p 子どもが聞いたおもしろい疑問とかを投稿していきます。
+    / div
+    /   p 子どもが聞いたおもしろい疑問とかを投稿していきます。
 
     div
       - user.children.each do |child|
         div.badge.badge-secondary.mr-2
           = "#{child.age}歳#{child.gender_noun}"
-      div.badge.badge-secondary.mr-2 東京都・世田谷区在住
+      / div.badge.badge-secondary.mr-2 東京都・世田谷区在住
 
     div
       span.mr-2
