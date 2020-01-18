@@ -13,8 +13,8 @@ ja:
           daily_occurences: 日常
       child:
           genders:
-            male: 男
-            female: 女
-            other: 他
+            male: 男の子
+            female: 女の子
+            other: その他
           gender: 性別
           age: 年齢

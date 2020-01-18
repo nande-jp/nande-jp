@@ -31,20 +31,23 @@ nav {
   background: #fff;
 }
 
+.navbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.navbar.navbar-light a {
+  color: #ff8080;
+}
+
+.navbar.nav-link {
+  font-size: 16px;
+}
+
 .navbar-brand {
   color: #ff8080;
   font-weight: 900;
   font-size: 24px !important;
-}
-
-.navbar {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  height: 60px;
-}
-
-.navbar a {
-  color: #ff8080;
-  font-size: 16px;
 }
 
 .card-header {
@@ -103,4 +106,21 @@ h1,h2,h3,h4,h5,h6 {
   color: #212529;
   border: #ffe98a;
   font-weight: 700;
+}
+
+.question_title {
+  background: #1681b217;
+  padding: 1.5rem;
+  border-radius: 40px;
+  display: inline-block;
+  float: right;
+  max-width: 75%;
+}
+
+.answer_content_container {
+  background: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 40px;
+  display: inline-block;
+  font-size: 18px;
 }

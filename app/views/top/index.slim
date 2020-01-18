@@ -15,7 +15,7 @@
               div = link_to "#{current_user.username}さん #{current_user.children_profile}", user_path(current_user.id), class: 'username-link'
 
           button type="button" class='btn-plain mt-3' data-toggle="modal" data-target="#question-form"
-            h4 style='font-weight: 700;color: #999;' 最近こどもに聞かれた質問を投稿する
+            h4 style='font-weight: 700;color: #999;' こどもに聞かれたギモンを投稿する
 
           div.mt-2
             button type="button" class='btn btn-pop btn-lg btn-block shadow' data-toggle="modal" data-target="#question-form"
@@ -29,9 +29,9 @@
                     span aria-hidden="true"  &times;
                 .modal-body
                   = simple_form_for Question.new do |f|
-                    = f.input :content, placeholder: '例）なんで空は青いの？', label: '子どもの疑問'
-                    = f.input :category, as: :select, collection: Question.category_map, label: '疑問のカテゴリーを選ぶ', include_blank: false
-                    = f.button :submit, class: 'btn btn-primary', value: '疑問を投稿する'
+                    = f.input :content, placeholder: '例）なんで空は青いの？', label: '子どものギモン'
+                    = f.input :category, as: :select, collection: Question.category_map, label: 'ギモンのカテゴリーを選ぶ', include_blank: false
+                    = f.button :submit, class: 'btn btn-primary', value: 'ギモンを投稿する'
 
     - else
       h1.h4.font-weight-bold nandeはこどもの「なんで？」を大切にするコミュニティです。
@@ -41,12 +41,12 @@
     hr
     - @posts.each do |post|
       - if post['display_type'] == HomeFeedService::QUESTION_DISPLAY_TYPE
-        = render partial: 'shared/question_card', locals: {question: post, user: post['user'], post_type: post['post_type'], children_profile: post['user']['children_profile']}
+        = render partial: 'shared/question_card', locals: {question: post, user: post['user'], post_type: post['post_type'], children_profile: post['user']['children_profile'], show_answer_cta: true}
         / = post
       - elsif post['display_type'] == HomeFeedService::ANSWER_DISPLAY_TYPE
         = render partial: 'shared/answer_card', locals: {answer: post, user: post['user'], question: post['question'], post_type: post['post_type'], is_bookmarked_by_current_user: post['is_bookmarked_by_current_user'], is_shared_by_current_user: post['is_shared_by_current_user'], children_profile: post['user']['children_profile']}
       - elsif post['display_type'] == HomeFeedService::SHARE_DISPLAY_TYPE
-        = render partial: 'shared/answer_card', locals: {answer: post['answer'], user: post['user'], question: post['question'], post_type: post['post_type'], is_bookmarked_by_current_user: post['is_bookmarked_by_current_user'], is_shared_by_current_user: post['is_shared_by_current_user'], children_profile: post['user']['children_profile']}
+        = render partial: 'shared/answer_card', locals: {answer: post['answer'], user: post['user'], question: post['question'], post_type: post['post_type'], is_bookmarked_by_current_user: post['is_bookmarked_by_current_user'], is_shared_by_current_user: post['is_shared_by_current_user'], children_profile: post['user']['children_profile'], shared_by: post['shared_by']}
 
     = link_to 'もっと見る', root_path(page: params.fetch(:page, 1).to_i + 1), class: 'btn btn-primary btn-block btn-lg'
   .col-sm-3.d-none.d-sm-block

@@ -1,9 +1,11 @@
 .card
   .card-header
-    | カテゴリー別で疑問を見る
+    | カテゴリー別でギモンを見る
   .card-body
     ul.list-group.list-group-flush
       - Question.categories.keys.to_a.each do |category|
         li.list-group-item
-          a
-            = link_to "#{I18n.t("activerecord.attributes.question.categories.#{category}")}系", category_path(id: category)
+          strong
+            = link_to "#{I18n.t("activerecord.attributes.question.categories.#{category}")}", category_path(id: category)
+
+          = link_to "に関するギモン", category_path(id: category)

@@ -15,8 +15,9 @@
           div = link_to "#{@question.user.username}さん #{@question.user.children_profile}", user_path(@question.user_id), class: 'username-link'
           .small.subtext = "#{@question.created_at.strftime("%Y年%m月%d日")}に投稿"
 
-      button type="button" class="btn btn-pop btn-lg shadow" data-toggle="modal" data-target="#answer-form"
-        | 答え方を投稿する
+      .mt-4.mb-4
+        button type="button" class="btn btn-pop btn-lg btn-block shadow" data-toggle="modal" data-target="#answer-form"
+          | 答え方を投稿する
 
       #answer-form.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"
         .modal-dialog role="document"
@@ -27,7 +28,7 @@
                 span aria-hidden="true"  &times;
             .modal-body
               = simple_form_for Answer.new, method: :post, url: question_answers_path(params[:id]) do |f|
-                = f.input :content, placeholder: 'こどもへの答え方を書きましょう', label: 'こどもへの答え方を書く'
+                = f.input :content, placeholder: 'こどもへの答え方を書きましょう', label: 'こどもへの答え方を書く', class: ''
                 = f.input :points, label: '答えのポイント', placeholder: '他のパパ・ママに答えのポイントを教えましょう！'
                 = f.button :submit, class: 'btn btn-primary btn-block', value: '答えを投稿する'
 
@@ -42,7 +43,7 @@
   .col-md-4.col-sm-12
     .card
       .card-header
-        | 関連の疑問
+        | 関連のギモン
       .card-body
         ul
           - @related_questions.each do |question|

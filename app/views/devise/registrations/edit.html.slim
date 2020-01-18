@@ -39,11 +39,13 @@
               = f.nested_fields_for :children do |ff|
                 = ff.hidden_field :id
                 .row
-                  .col-sm-5.col-md-3
+                  .col-sm-5.col-md-2
                     = ff.number_field :age, placeholder: '年齢', class: 'form-control'
-                  .col-sm-5.col-md-5
+                  .col-sm-5.col-md-3
                     = ff.select :gender, Child.gender_map, {include_blank: '性別を選ぶ'}, {class: 'custom-select'}
-                  .col-sm-2.col-md-4.text-right
+                  .col-sm-12.col-md-4
+                    = ff.text_field :nickname, placeholder: 'ニックネーム', class: 'form-control'
+                  .col-sm-2.col-md-3.text-right
                     = ff.remove_nested_fields_link '削除する', style: 'vertical-align: -webkit-baseline-middle; width: 100%;'
                 hr
               .mb-2 style='height: 20px;'

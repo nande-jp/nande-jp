@@ -1,14 +1,16 @@
 div.mb-3
-  = image_tag(user['avatar_url'], height: 36, width: 36, style: 'display: inline-block; vertical-align: text-bottom', class: 'mr-2 rounded-circle')
+  = image_tag(user['avatar_url'], height: 36, width: 36, style: 'display: inline-block; vertical-align: middle', class: 'mr-2 rounded-circle')
   div style='display: inline-block'
     div = link_to "#{user['username']}さん #{children_profile}", user_path(answer['user_id']), class: 'username-link'
-    .small.subtext = "#{answer['created_at'].strftime("%Y年%m月%d日")}に投稿"
+    / .small.subtext = "#{answer['created_at'].strftime("%Y年%m月%d日")}に投稿"
 
 - unless defined?(hide_title) && hide_title
-  h4.mb-3
-    = link_to question['content'], question_path(answer['question_id']), class: 'text-body font-weight-bold'
+  h4.mb-3.question_title
+    = link_to "#{question['content']}", question_path(answer['question_id']), class: 'text-body font-weight-bold'
 
-p
+.clearfix
+
+p.answer_content_container
   = answer['content']
 
 - if answer['points']
@@ -35,7 +37,7 @@ p
           </defs>
         </svg>
 
-      | 答えのポイント
+      | 答え方のポイント
     .card-body
       p
         = answer['points']

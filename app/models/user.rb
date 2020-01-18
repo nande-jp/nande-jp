@@ -25,7 +25,7 @@ class User < ApplicationRecord
   has_many :children
   accepts_nested_attributes_for :children, allow_destroy: true, reject_if: ->(child){ child['age'].blank? && child['gender'].blank? }
 
-  enum gender: [:male, :female]
+  enum gender: [:male, :female, :other]
 
   def self.gender_map
     genders.map do |gender, _|

@@ -1,9 +1,9 @@
 class Child < ApplicationRecord
   belongs_to :user, counter_cache: true
 
-  validates_presence_of :age, :gender
+  validates_presence_of :age, :gender, :nickname
 
-  enum gender: [:male, :female]
+  enum gender: [:male, :female, :other]
 
   def self.gender_map
     genders.map do |gender, _|
@@ -12,7 +12,11 @@ class Child < ApplicationRecord
   end
 
   def gender_noun
-    return male? ? '息子' : '娘'
+    return '息子' if male?
+
+    return '娘' if female?
+
+    return 'こども'
   end
 
   def humanize
