@@ -1,0 +1,1 @@
+$("#bookmark-item_<%= @answer.id %>").html("<%= escape_javascript(render partial: 'shared/answer/bookmark', locals: { is_bookmarked_by_current_user: @answer.bookmarked_by?(current_user), id: @answer.id, bookmarks_count: @answer.bookmarks_count } ) %>");

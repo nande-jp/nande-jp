@@ -1,0 +1,1 @@
+$("#share-item_<%= @answer.id %>").html("<%= escape_javascript(render partial: 'shared/answer/share', locals: { is_shared_by_current_user: @answer.shared_by?(current_user), id: @answer.id, shares_count: @answer.shares_count } ) %>");

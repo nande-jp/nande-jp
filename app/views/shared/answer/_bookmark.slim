@@ -1,0 +1,19 @@
+- if user_signed_in? && is_bookmarked_by_current_user
+  button.answer-actions.mr-2
+    span.mr-1
+      <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.62939 1.6665C4.71652 1.6665 3.96273 2.41867 3.96273 3.33154L3.95459 18.3332L10.6213 15.8332L17.2879 18.3332V17.1304V3.33317C17.2879 2.42228 16.5321 1.6665 15.6213 1.6665H5.62939ZM5.62939 3.33317H15.6213V15.9276L10.6213 14.0526L5.62288 15.9276L5.62939 3.33317Z" fill="#FF8080"/>
+        <rect x="4.69141" y="3.3335" width="12.0833" height="11.6667" fill="#FF8080"/>
+        <rect x="5.62061" y="14.1665" width="2.78846" height="2.5" fill="#FF8080"/>
+        <rect x="13.0566" y="14.1665" width="2.78846" height="2.5" fill="#FF8080"/>
+      </svg>
+
+    = link_to "ブックマーク#{bookmarks_count > 0 ? '・' + bookmarks_count.to_s : ''}", answer_bookmark_deletions_path(answer_id: id), method: :post, remote: true, style: 'color: #ff8080;'
+- else
+  button.answer-actions.mr-2
+    span.mr-1
+      <svg width="20" height="20" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.00938 2C5.02725 2 4.21627 2.9026 4.21627 3.99805L4.20752 22L11.3799 19L18.5524 22V20.5566V4C18.5524 2.90694 17.7392 2 16.7592 2H6.00938ZM6.00938 4H16.7592V19.1133L11.3799 16.8633L6.00237 19.1133L6.00938 4Z" fill="#6C757D"/>
+      </svg>
+
+    = link_to "ブックマーク#{bookmarks_count > 0 ? '・' + bookmarks_count.to_s : ''}", answer_bookmarks_path(answer_id: id), method: :post, remote: true, class: 'social-cta'

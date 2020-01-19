@@ -8,6 +8,13 @@ hr
   .col-md-3.d-none.d-sm-block
     = render partial: 'shared/profile/sidenav', locals: {user: @user}
   .col-md-9.col-sm-12
+    - @posts.each do |post|
+      - if post['display_type'] == HomeFeedService::QUESTION_DISPLAY_TYPE
+        = render partial: 'shared/question_card', locals: {question: post, user: post['user'], post_type: post['post_type'], children_profile: post['user']['children_profile'], show_answer_cta: true}
+        / = post
+      - elsif post['display_type'] == HomeFeedService::ANSWER_DISPLAY_TYPE
+        = render partial: 'shared/answer_card', locals: {answer: post, user: post['user'], question: post['question'], post_type: post['post_type'], is_bookmarked_by_current_user: post['is_bookmarked_by_current_user'], is_shared_by_current_user: post['is_shared_by_current_user'], children_profile: post['user']['children_profile']}
+      - elsif post['display_type'] == HomeFeedService::SHARE_DISPLAY_TYPE
+        = render partial: 'shared/answer_card', locals: {answer: post['answer'], user: post['user'], question: post['question'], post_type: post['post_type'], is_bookmarked_by_current_user: post['is_bookmarked_by_current_user'], is_shared_by_current_user: post['is_shared_by_current_user'], children_profile: post['user']['children_profile'], shared_by: post['shared_by']}
 
-    - @answers.each do |answer|
-      = render partial: 'shared/answer_card', locals: {answer: answer, question: answer.question, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), children_profile: answer.user.children_profile}
+    = link_to 'もっと見る', root_path(page: params.fetch(:page, 1).to_i + 1), class: 'btn btn-primary btn-block btn-lg'

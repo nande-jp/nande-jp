@@ -8,11 +8,16 @@ class SharesController < ApplicationController
 
   def create
     @share = current_user.shares.new(answer_id: params[:answer_id])
+    @answer = @share.answer
 
-    if @share.save
-      redirect_to root_path
-    else
-      redirect_to root_path
+    respond_to do |format|
+      if @share.save
+        format.js {}
+        format.html { redirect_to root_path }
+      else
+        format.js {}
+        format.html { redirect_to root_path }
+      end
     end
   end
 end

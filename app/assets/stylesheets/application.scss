@@ -109,7 +109,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .question_title {
-  background: #1681b217;
+  background: #80ffff4f;
   padding: 1.5rem;
   border-radius: 40px;
   display: inline-block;
@@ -123,4 +123,12 @@ h1,h2,h3,h4,h5,h6 {
   border-radius: 40px;
   display: inline-block;
   font-size: 18px;
+}
+
+.social-cta {
+  &:hover {
+    color: #ff8080;
+    transition: 0.3s;
+    text-decoration: none;
+  }
 }
