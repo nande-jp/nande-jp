@@ -1,0 +1,48 @@
+- if current_user.children_count > 0
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+      .modal-body
+        = simple_form_for Question.new do |f|
+          = f.input :content, placeholder: '例）なんで空は青いの？', label: '子どものギモン'
+          = f.input :category, as: :select, collection: Question.category_map, label: 'ギモンのカテゴリーを選ぶ', include_blank: false
+          = f.input :child, as: :select, collection: current_user.children.map{|child| ["#{child.nickname}（#{child.age}歳）", child.id]}, label: '質問した子ども'
+          = link_to '子どもを追加する', edit_user_registration_path, class: 'small float-right'
+          .clearfix.mb-4
+          = f.button :submit, class: 'btn btn-primary', value: 'ギモンを投稿する'
+- else
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        | ギモンを投稿する前に子どもを設定してください
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+      .modal-body
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, remote: true }) do |f|
+          = bootstrap_devise_error_messages!
+          = f.hidden_field :is_question_form, value: 1
+          .form-group
+            h3
+              | 子どもの年齢を設定する
+            .subtext.mb-4
+              | 他の方が参考にできるように、お子さんの性別と年齢を表示します。
+            - resource.children.build
+
+            = f.nested_fields_for :children do |ff|
+              = ff.hidden_field :id
+              .row
+                .col-sm-5.col-md-3
+                  = ff.number_field :age, placeholder: '年齢', class: 'form-control'
+                .col-sm-5.col-md-3
+                  = ff.select :gender, Child.gender_map, {include_blank: '性別'}, {class: 'custom-select'}
+                .col-sm-12.col-md-4
+                  = ff.text_field :nickname, placeholder: 'ニックネーム', class: 'form-control'
+                .col-sm-2.col-md-2.text-right
+                  = ff.remove_nested_fields_link '削除する', style: 'vertical-align: -webkit-baseline-middle; width: 100%;', class: 'small'
+              hr
+            .mb-2 style='height: 20px;'
+              = f.add_nested_fields_link :children, '子どもを追加する', class: 'btn btn-secondary btn-sm float-right'
+          .form-group.mt-4
+            = f.submit '子どもを設定する', class: 'btn btn-pop btn-block shadow'

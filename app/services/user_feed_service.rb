@@ -85,6 +85,7 @@ class UserFeedService
         @answers_map[item['id']] = true
 
         attributes = attributes.merge({'question' => item.question.attributes})
+        attributes['question']['child'] = item.question.child
         attributes['is_bookmarked_by_current_user'] = item.bookmarked_by?(@user)
         attributes['is_shared_by_current_user'] = item.shared_by?(@user)
       end
@@ -94,6 +95,7 @@ class UserFeedService
         @shares_map[item['id']] = true
 
         attributes = attributes.merge({'question' => item.answer.question.attributes})
+        attributes['question']['child'] = item.answer.question.child
         attributes['is_bookmarked_by_current_user'] = item.answer.bookmarked_by?(@user)
         attributes['is_shared_by_current_user'] = item.answer.shared_by?(@user)
         attributes = attributes.merge({"answer" => item.answer.attributes})
@@ -106,6 +108,7 @@ class UserFeedService
         @questions_map[item['id']] = true
 
         attributes = attributes.merge({"category_name" => item.category_name})
+        attributes['child'] = item.child
       end
 
       attributes['display_type'] = display_type

@@ -9,4 +9,4 @@
 
 .card.mb-3
   .card-body
-    = render partial: 'shared/answer_content', locals: {answer: answer, question: question, user: user, is_shared_by_current_user: is_shared_by_current_user, is_bookmarked_by_current_user: is_bookmarked_by_current_user, hide_title: defined?(hide_title) ? hide_title : false, children_profile: children_profile}
+    = render partial: 'shared/answer_content', locals: {answer: answer, question: question, user: user, is_shared_by_current_user: is_shared_by_current_user, is_bookmarked_by_current_user: is_bookmarked_by_current_user, hide_title: defined?(hide_title) ? hide_title : false, children_profile: children_profile, show_child_name: defined?(show_child_name) ? show_child_name : false}

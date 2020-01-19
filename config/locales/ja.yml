@@ -11,10 +11,11 @@ ja:
           science: 科学
           philosophy: 哲学
           daily_occurences: 日常
+        child: 子ども
       child:
-          genders:
-            male: 男の子
-            female: 女の子
-            other: その他
-          gender: 性別
-          age: 年齢
+        genders:
+          male: 男の子
+          female: 女の子
+          other: その他
+        gender: 性別
+        age: 年齢

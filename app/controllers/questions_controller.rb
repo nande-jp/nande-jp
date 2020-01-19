@@ -15,9 +15,10 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new(question_params)
 
     if @question.save
-      redirect_to question_path(@question)
+      redirect_to question_path(@question.id)
     else
-      render :index
+      flash[:alert] = @question.errors.full_messages[0]
+      redirect_to root_path
     end
   end
 

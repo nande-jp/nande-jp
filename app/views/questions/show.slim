@@ -5,15 +5,20 @@
     .mb-4
       div.mb-3
         span.badge.badge-secondary
-          = link_to @question.category_name, category_path(@question.category), style: 'color: inherit'
-      h4.mb-3
-        = link_to @question.content, question_path(@question.id), class: 'text-body font-weight-bold'
+          = link_to "#{@question.category_name}に関するギモン", category_path(@question.category), style: 'color: inherit'
 
       div.mb-3
-        = image_tag(@question.user.avatar.url, height: 36, width: 36, style: 'display: inline-block; vertical-align: text-bottom', class: 'mr-2 rounded-circle')
+        - image_path = @question.child.gender == 'male' ? 'boy.png' : 'girl.png'
+        = image_tag("fallback/#{image_path}", height: 36, width: 36, style: 'display: inline-block; vertical-align: middle', class: 'mr-2 rounded-circle')
         div style='display: inline-block'
-          div = link_to "#{@question.user.username}さん #{@question.user.children_profile}", user_path(@question.user_id), class: 'username-link'
-          .small.subtext = "#{@question.created_at.strftime("%Y年%m月%d日")}に投稿"
+          - calling_method = @question.child.gender == 'male' ? 'くん' : 'ちゃん'
+          div = link_to "#{@question.child.nickname}（#{@question.child.age}歳）#{calling_method}からのギモン", user_path(@question.user_id), class: 'username-link font-weight-bold'
+          / .small.subtext = "#{@question.created_at.strftime("%Y年%m月%d日")}に投稿"
+
+      h4.mb-3.question_title.float-left
+        = link_to @question.content, question_path(@question.id), class: 'text-body font-weight-bold'
+
+      .clearfix
 
       .mt-4.mb-4
         button type="button" class="btn btn-pop btn-lg btn-block shadow" data-toggle="modal" data-target="#answer-form"
