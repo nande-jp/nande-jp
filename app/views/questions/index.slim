@@ -4,7 +4,7 @@
 
   .col-sm-12.col-md-6
     - @questions.each do |question|
-      = render partial: 'shared/question_card', locals: {question: question.attributes.merge({"category_name" => question.category_name}), user: question.user.attributes.merge({"avatar_url" => question.user.avatar.url}), show_answer_cta: true, children_profile: question.user.children_profile}
+      = render partial: 'shared/question_card', locals: {question: question.attributes.merge({"category_name" => question.category_name, "child" => question.child}), user: question.user.attributes.merge({"avatar_url" => question.user.avatar.url}), show_answer_cta: true, children_profile: question.user.children_profile}
 
     = will_paginate @questions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 

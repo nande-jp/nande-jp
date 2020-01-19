@@ -4,8 +4,8 @@
   .col-md-10.col-sm-12
     div.mb-4
       span.mr-2
-        h3
-          = "#{user.username}さん"
+        h3.mt-4.mt-md-0
+          = "#{user.username}さん（#{user.parent_name}）"
       span.mr-2
         | フォロワー
         strong = " #{user.followers_count}人"
@@ -13,7 +13,7 @@
         strong = " #{user.followings_count}人"
       - if user_signed_in? && current_user.is_following?(user)
         = link_to 'フォローを外す', user_unfollows_path(user.id), class: 'btn btn-sm btn-secondary', method: :post
-      - else
+      - elsif !user_signed_in? || (user_signed_in? && current_user != user)
         = link_to 'フォローする', user_follows_path(user.id), class: 'btn btn-sm btn-primary', method: :post
 
 
@@ -21,13 +21,12 @@
     /   p 子どもが聞いたおもしろいギモンとかを投稿していきます。
 
     div
+      h5.subtext
+        = "#{user.username}さんの子ども"
       - user.children.each do |child|
-        div.badge.badge-secondary.mr-2
-          = "#{child.age}歳#{child.gender_noun}"
-      / div.badge.badge-secondary.mr-2 東京都・世田谷区在住
-
-    div
-      span.mr-2
-        = "ギモン数 #{user.questions.count} | "
-      span
-        = "回答数 #{user.answers.count}"
+        div.mb-2 style='display: inline-block'
+          - image_path = child.gender == 'male' ? 'boy.png' : 'girl.png'
+          = image_tag("fallback/#{image_path}", height: 36, width: 36, style: 'display: inline-block; vertical-align: middle', class: 'mr-2 rounded-circle')
+          div.mr-4 style='display: inline-block'
+            - calling_method = child.gender == 'male' ? 'くん' : 'ちゃん'
+            = "#{child.nickname}（#{child.age}歳）#{calling_method}"

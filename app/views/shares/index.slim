@@ -8,6 +8,9 @@ hr
   .col-3
     = render partial: 'shared/profile/sidenav', locals: {user: @user}
   .col-9
-    - @shares.each do |share|
-      - answer_user = share.answer.user
-      = render partial: 'shared/answer_card', locals: {answer: share.answer, user: answer_user.attributes.merge({'avatar_url' => answer_user.avatar.url}), question: share.answer.question, shared_by: share.user, is_shared_by_current_user: share.answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: share.answer.bookmarked_by?(user_signed_in? ? current_user : nil), children_profile: share.answer.user.children_profile}
+    - if @shares.count > 0
+      - @shares.each do |share|
+        - answer_user = share.answer.user
+        = render partial: 'shared/answer_card', locals: {answer: share.answer, user: answer_user.attributes.merge({'avatar_url' => answer_user.avatar.url}), question: share.answer.question, shared_by: share.user, is_shared_by_current_user: share.answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: share.answer.bookmarked_by?(user_signed_in? ? current_user : nil), children_profile: share.answer.user.children_profile}
+    - else
+      h3.text-center.mt-4 投稿がまだありません。

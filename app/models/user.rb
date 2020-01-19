@@ -42,8 +42,6 @@ class User < ApplicationRecord
     "#{children.map{|child| child.humanize}.join('、')}の#{parent_name}"
   end
 
-  private
-
   def parent_name
     return 'パパ' if male?
     return 'ママ' if female?

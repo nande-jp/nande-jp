@@ -4,7 +4,7 @@ div.mb-3
     = image_tag("fallback/#{image_path}", height: 36, width: 36, style: 'display: inline-block; vertical-align: middle', class: 'mr-2 rounded-circle')
     div style='display: inline-block'
       - calling_method = question['child']['gender'] == 'male' ? 'くん' : 'ちゃん'
-      div = link_to "#{question['child']['nickname']}（#{question['child']['age']}歳）#{calling_method}からのギモン", user_path(answer['user_id']), class: 'username-link font-weight-bold'
+      div = link_to "#{question['child']['nickname']}（#{question['child']['age']}歳）#{calling_method}からのギモン", user_path(question['user_id']), class: 'username-link font-weight-bold'
 
 
 - unless defined?(hide_title) && hide_title

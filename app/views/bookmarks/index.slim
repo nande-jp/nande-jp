@@ -8,8 +8,8 @@ hr
   .col-3
     = render partial: 'shared/profile/sidenav', locals: {user: @user}
   .col-9
-    h5.mb-3
-      = "#{@user.bookmarks.count}件のブックマーク"
-
-    - @bookmarks.each do |bookmark|
-      = render partial: 'shared/answer_card', locals: {answer: bookmark.answer, user: bookmark.user.attributes.merge({'avatar_url' => bookmark.user.avatar.url}), question: bookmark.answer.question, is_shared_by_current_user: bookmark.answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: bookmark.answer.bookmarked_by?(user_signed_in? ? current_user : nil), children_profile: bookmark.user.children_profile}
+    - if @bookmarks.count > 0
+      - @bookmarks.each do |bookmark|
+        = render partial: 'shared/answer_card', locals: {answer: bookmark.answer, user: bookmark.user.attributes.merge({'avatar_url' => bookmark.user.avatar.url}), question: bookmark.answer.question, is_shared_by_current_user: bookmark.answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: bookmark.answer.bookmarked_by?(user_signed_in? ? current_user : nil), children_profile: bookmark.user.children_profile}
+    - else
+      h3.text-center.mt-4 ブックマークがまだありません。
