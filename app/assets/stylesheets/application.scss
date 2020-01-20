@@ -17,14 +17,15 @@
 @import 'bootstrap_custom';
 
 html,body {
-  font-family: 'Noto Sans JP', sans-serif;
+  // font-family: 'Noto Sans JP', sans-serif;
+  font-family: "M PLUS Rounded 1c", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Verdana, Meiryo, "M+ 1p", sans-serif;
 }
 
 button:focus {outline:0;}
 
 
 a {
-  color: #1681b2;
+  color: #3a3a3a;
 }
 
 nav {

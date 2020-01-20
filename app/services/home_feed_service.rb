@@ -43,17 +43,17 @@ class HomeFeedService
   def fetch_followings_content
     @feed.concat(get_shares_by_followings)
     @feed.concat(get_answers_by_followings)
-    @feed.concat(get_questions_by_followings)
+    # @feed.concat(get_questions_by_followings)
   end
 
   def fetch_recommended_content
     @feed.concat(get_trending_answers)
-    @feed.concat(get_trending_questions)
+    # @feed.concat(get_trending_questions)
   end
 
   def fetch_recent_content
     @feed.concat(get_new_answers)
-    @feed.concat(get_new_questions)
+    # @feed.concat(get_new_questions)
   end
 
   def get_shares_by_followings
