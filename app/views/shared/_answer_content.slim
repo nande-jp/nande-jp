@@ -55,7 +55,7 @@ p.answer_content_container.float-right
       p
         = answer['points']
 
-div
+div.mt-5
   - shares_count = answer['shares_count'].to_i
   - bookmarks_count = answer['bookmarks_count'].to_i
 
@@ -67,6 +67,12 @@ div
   span id="share-item_#{answer['id']}"
     = render partial: 'shared/answer/share', locals: { is_shared_by_current_user: answer['is_shared_by_current_user'], id: answer['id'], shares_count: shares_count }
 
-  span.float-right
-    a.twitter-share-button data-related="twitterapi,twitter" data-size="large" data-text="#{answer['content']}" data-url="#{request.original_url}" data-via="nande-jp" data-lang='ja' href="https://twitter.com/intent/tweet"  ツイートする
-    script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"
+
+  span.float-right.d-none.d-md-block
+      a.twitter-share-button data-related="twitterapi,twitter" data-size="large" data-text="#{answer['content']}" data-url="#{request.original_url}" data-via="nande-jp" data-lang='ja' href="https://twitter.com/intent/tweet"  ツイートする
+      script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"
+
+  .d-md-none
+    .mt-2
+      a.twitter-share-button data-related="twitterapi,twitter" data-size="large" data-text="#{answer['content']}" data-url="#{request.original_url}" data-via="nande-jp" data-lang='ja' href="https://twitter.com/intent/tweet"  ツイートする
+      script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"
