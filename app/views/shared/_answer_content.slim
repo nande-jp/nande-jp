@@ -1,4 +1,4 @@
-div.mb-3
+div.mb-4
   - if defined?(show_child_name) && show_child_name
     - image_path = question['child']['gender'] == 'male' ? 'boy.png' : 'girl.png'
     = image_tag("fallback/#{image_path}", height: 36, width: 36, style: 'display: inline-block; vertical-align: middle', class: 'mr-2 rounded-circle')
@@ -8,8 +8,7 @@ div.mb-3
 
 
 - unless defined?(hide_title) && hide_title
-  span.mr-4
-  h4.mb-3.question_title
+  h4.mb-3.mt-1.question_title
     = link_to "#{question['content']}", question_path(answer['question_id']), class: 'text-body font-weight-bold'
 
   .clearfix
