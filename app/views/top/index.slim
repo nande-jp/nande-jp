@@ -38,7 +38,7 @@
 
       / = link_to '登録する', new_user_registration_path, class: 'btn btn-pop btn-lg shadow btn-block mt-4 mb-4'
 
-    hr
+    .mt-4
     - @posts.each do |post|
       - if post['display_type'] == HomeFeedService::QUESTION_DISPLAY_TYPE
         = render partial: 'shared/question_card', locals: {question: post, user: post['user'], post_type: post['post_type'], children_profile: post['user']['children_profile'], show_answer_cta: true, show_child_name: false}
