@@ -7,7 +7,7 @@ div.mb-4
       div = link_to "#{question['child']['nickname']}（#{question['child']['age']}歳）#{calling_method}からのギモン", user_path(question['user_id']), class: 'username-link font-weight-bold'
 
 
-- unless defined?(hide_title) && hide_title
+- unless defined?(is_detail_page) && !is_detail_page
   h4.mb-3.mt-1.question_title
     = link_to "#{question['content']}", question_path(answer['question_id']), class: 'text-body font-weight-bold'
 
@@ -76,3 +76,8 @@ div.mt-5
     .mt-2
       a.twitter-share-button data-related="twitterapi,twitter" data-size="large" data-text="#{answer['content']}" data-url="#{request.original_url}" data-via="nande-jp" data-lang='ja' href="https://twitter.com/intent/tweet"  ツイートする
       script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"
+
+div.mt-5
+  ul.float-right.text-right.list-unstyled
+   li.mb-2 = link_to 'このギモンの答え方を投稿する', question_path(question['id'])
+   li = link_to "すべての答えを見る(#{question['answers_count']}件)", question_path(question['id'])

@@ -43,7 +43,7 @@
 
       - @answers.each do |answer|
         div.mb-4.mt-4
-          = render partial: 'shared/answer_content', locals: {answer: answer, question: answer.question, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), hide_title: true, children_profile: answer.user.children_profile}
+          = render partial: 'shared/answer_content', locals: {answer: answer, question: answer.question, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), is_detail_page: false, children_profile: answer.user.children_profile}
         hr
   .col-md-4.col-sm-12
     .card
