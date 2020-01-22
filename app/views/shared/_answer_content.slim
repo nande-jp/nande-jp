@@ -8,7 +8,7 @@ div.mb-4
 
 
 - unless defined?(is_detail_page) && !is_detail_page
-  h4.mb-3.mt-1.question_title
+  h4.mb-3.mt-1.question_title.shadow style='border: none;'
     = link_to "#{question['content']}", question_path(answer['question_id']), class: 'text-body font-weight-bold'
 
   .clearfix
@@ -18,16 +18,17 @@ div.mb-4
 div.mb-3.mt-4
   = image_tag(user['avatar_url'], height: 36, width: 36, style: 'display: inline-block; vertical-align: middle', class: 'mr-2 rounded-circle')
   div style='display: inline-block'
-    div = link_to "#{user['username']}さんの答え#{children_profile.present? ? '（' + children_profile + '）' : ''}", user_path(answer['user_id']), class: 'username-link font-weight-bold'
+    div = link_to "#{user['username']}さんの答え#{children_profile.present? ? '（' + children_profile + '）' : ''}", user_path(answer['user_id']), class: 'username-link'
     / .small.subtext = "#{answer['created_at'].strftime("%Y年%m月%d日")}に投稿"
 
-p.answer_content_container.float-right
+p.answer_content_container.float-right.shadow style='border: none;'
   = answer['content']
 
 .clearfix
 
 - if answer['points']
-  .card.bg-light.mb-4.mt-4.shadow.bg-white.rounded.p-3 style='border: none;'
+  / .shadow.bg-white.rounded.p-3 style='border: none;'
+  .card.bg-light.mb-3.mt-3
     .card-header
       span.mr-2
         <svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="pb-1">
@@ -51,11 +52,11 @@ p.answer_content_container.float-right
         </svg>
 
       | 答え方のポイント
-    .card-body
+    .card-body'
       p
         = answer['points']
 
-div.mt-5
+div.mt-3
   - shares_count = answer['shares_count'].to_i
   - bookmarks_count = answer['bookmarks_count'].to_i
 
@@ -77,7 +78,8 @@ div.mt-5
       a.twitter-share-button data-related="twitterapi,twitter" data-size="large" data-text="#{answer['content']}" data-url="#{request.original_url}" data-via="nande-jp" data-lang='ja' href="https://twitter.com/intent/tweet"  ツイートする
       script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"
 
-div.mt-5
-  ul.float-right.text-right.list-unstyled
-   li.mb-2 = link_to 'このギモンの答え方を投稿する', question_path(question['id'])
-   li = link_to "すべての答えを見る(#{question['answers_count']}件)", question_path(question['id'])
+- unless defined?(is_detail_page) && !is_detail_page
+  div.mt-5
+    ul.float-right.text-right.list-unstyled
+     li.mb-2 = link_to 'このギモンの答え方を投稿する', question_path(question['id'])
+     li = link_to "すべての答えを見る(#{question['answers_count']}件)", question_path(question['id'])

@@ -2,7 +2,7 @@
   .card-header
     | 人気のギモン
   .card-body
-    ul
+    ol
       - popular_questions.each do |question|
         li.mb-3
-          = link_to question.content, question
+          = link_to "#{question.content}(#{question.answers_count}件の答え)", question

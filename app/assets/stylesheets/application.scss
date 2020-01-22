@@ -17,7 +17,7 @@
 @import 'bootstrap_custom';
 
 html,body {
-  // font-family: 'Noto Sans JP', sans-serif;
+  background: #FFFFFA;
   font-family: "M PLUS Rounded 1c", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Verdana, Meiryo, "M+ 1p", sans-serif;
 }
 
@@ -109,15 +109,22 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: 700;
 }
 
+.btn-pop-dark {
+  background: #ff8080;
+  color: white;
+  border: #ffe98a;
+  font-weight: 700;
+}
+
 .question_title {
-  background: #80ffff4f;
+  background: #ffe98a;
   padding: 1.5rem;
   border-radius: 40px;
   display: inline-block;
 }
 
 .answer_content_container {
-  background: #f5f5f5;
+  background: #FFF8CA;
   padding: 1.5rem;
   border-radius: 40px;
   display: inline-block;
