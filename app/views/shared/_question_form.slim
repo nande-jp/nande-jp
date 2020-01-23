@@ -11,7 +11,7 @@
           = f.input :child, as: :select, collection: current_user.children.map{|child| ["#{child.nickname}（#{child.age}歳）", child.id]}, label: '質問した子ども'
           = link_to '子どもを追加する', edit_user_registration_path, class: 'small float-right'
           .clearfix.mb-4
-          = f.button :submit, class: 'btn btn-primary', value: 'ギモンを投稿する'
+          = f.button :submit, class: 'btn btn-pop-dark btn-block', value: 'ギモンを投稿する'
 - else
   .modal-dialog role="document"
     .modal-content

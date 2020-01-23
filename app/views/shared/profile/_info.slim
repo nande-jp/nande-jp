@@ -14,7 +14,7 @@
       - if user_signed_in? && current_user.is_following?(user)
         = link_to 'フォローを外す', user_unfollows_path(user.id), class: 'btn btn-sm btn-secondary', method: :post
       - elsif !user_signed_in? || (user_signed_in? && current_user != user)
-        = link_to 'フォローする', user_follows_path(user.id), class: 'btn btn-sm btn-primary', method: :post
+        = link_to 'フォローする', user_follows_path(user.id), class: 'btn btn-sm btn-pop-dark', method: :post
 
 
     / div

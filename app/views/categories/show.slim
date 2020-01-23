@@ -1,10 +1,7 @@
 - set_meta_tags title: "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}系のなぜなぜ期の疑問"
 
 .row
-  .col-3.d-none.d-sm-block
-    = render partial: 'shared/sidenav/categories'
-
-  .col-sm-12.col-md-6
+  .col-sm-12.col-md-8
     h1.h2.font-weight-bold.mb-4
       = "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}系の最新の疑問"
 
@@ -13,5 +10,8 @@
 
     = will_paginate @questions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 
-  .col-3.d-none.d-sm-block
+  .col-sm-4.d-none.d-sm-block
     = render partial: 'shared/sidenav/popular_questions', locals: {popular_questions: @popular_questions}
+
+    .mt-4
+      = render partial: 'shared/sidenav/categories'

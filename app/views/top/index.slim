@@ -32,7 +32,7 @@
             h4 style='font-weight: 700;color: #999;' こどもに聞かれたギモンを投稿する
 
           div.mt-2
-            = link_to '登録する', new_user_registration_path, class: 'btn btn-pop btn-lg btn-block shadow'
+            = link_to '登録する', new_user_registration_path, class: 'btn btn-pop-dark btn-lg btn-block shadow'
 
       / h1.h4.font-weight-bold nandeはこどもの「なんで？」を大切にするコミュニティです。
 
@@ -48,7 +48,7 @@
       - elsif post['display_type'] == HomeFeedService::SHARE_DISPLAY_TYPE
         = render partial: 'shared/answer_card', locals: {answer: post['answer'], user: post['user'], question: post['question'], post_type: post['post_type'], is_bookmarked_by_current_user: post['is_bookmarked_by_current_user'], is_shared_by_current_user: post['is_shared_by_current_user'], children_profile: post['user']['children_profile'], shared_by: post['shared_by'], show_child_name: true}
 
-    = link_to 'もっと見る', root_path(page: params.fetch(:page, 1).to_i + 1), class: 'btn btn-primary btn-block btn-lg mt-4'
+    = link_to 'もっと見る', root_path(page: params.fetch(:page, 1).to_i + 1), class: 'btn btn-pop-dark btn-block btn-lg mt-4'
   .col-sm-4.d-none.d-sm-block
     = render partial: 'shared/sidenav/popular_questions', locals: {popular_questions: @popular_questions}
 

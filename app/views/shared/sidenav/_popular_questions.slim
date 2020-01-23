@@ -5,4 +5,4 @@
     ol
       - popular_questions.each do |question|
         li.mb-3
-          = link_to "#{question.content}(#{question.answers_count}件の答え)", question
+          = link_to "#{truncate(question.content, length: 15)} <small>(#{question.answers_count}件の答え)</small>".html_safe, question

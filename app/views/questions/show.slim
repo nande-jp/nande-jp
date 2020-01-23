@@ -37,7 +37,7 @@
                   = simple_form_for Answer.new, method: :post, url: question_answers_path(params[:id]) do |f|
                     = f.input :content, placeholder: 'こどもへの答え方を書きましょう', label: 'こどもへの答え方を書く', class: ''
                     = f.input :points, label: '答えのポイント', placeholder: '他のパパ・ママに答えのポイントを教えましょう！'
-                    = f.button :submit, class: 'btn btn-primary btn-block', value: '答えを投稿する'
+                    = f.button :submit, class: 'btn btn-pop-dark btn-block', value: '答えを投稿する'
 
     .mt-4
       h4 = "#{@question.answers_count}件の答え"

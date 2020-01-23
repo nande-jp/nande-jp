@@ -5,7 +5,4 @@
     ul.list-group.list-group-flush
       - Question.categories.keys.to_a.each do |category|
         li.list-group-item
-          strong
-            = link_to "#{I18n.t("activerecord.attributes.question.categories.#{category}")}", category_path(id: category)
-
-          = link_to "に関するギモン", category_path(id: category)
+          = link_to "<strong>#{I18n.t("activerecord.attributes.question.categories.#{category}")}</strong>に関するギモン".html_safe, category_path(id: category)
