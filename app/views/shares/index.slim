@@ -1,8 +1,8 @@
 - set_meta_tags title: "#{@user.username}さんのシェア"
 
-div.mb-4
-  = render partial: 'shared/profile/info', locals: {user: @user}
-hr
+.card.mb-4
+  .card-body
+    = render partial: 'shared/profile/info', locals: {user: @user}
 
 .row
   .col-3

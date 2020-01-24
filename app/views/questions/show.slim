@@ -44,7 +44,7 @@
       hr
 
       - @answers.each do |answer|
-        .card.mb-4.mt-4.ml-5
+        .card.mb-4.mt-4.ml-md-5.ml-0
           .card-body
             = render partial: 'shared/answer_content', locals: {answer: answer, question: answer.question, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), is_detail_page: false, children_profile: answer.user.children_profile}
   .col-md-4.col-sm-12
