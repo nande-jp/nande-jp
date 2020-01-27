@@ -12,4 +12,7 @@
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 13.3455L16.8829 16.4577L13.7437 13.3315L14.8457 12.2249L16.0907 13.4647V5.90164C16.0921 5.6955 16.0127 5.5014 15.8673 5.35507C15.7205 5.20721 15.5244 5.12589 15.3154 5.12589H6.90796L5.33981 3.56415H15.3154C15.9436 3.56415 16.5331 3.80936 16.9753 4.2543C17.4153 4.69742 17.6556 5.28488 17.6523 5.90912V13.4827L18.8965 12.2403L20 13.3455ZM12.811 14.8865H4.6846C4.4754 14.8865 4.27948 14.8051 4.13269 14.6574C3.98727 14.5111 3.90793 14.3169 3.9093 14.1107V6.5477L5.15427 7.78748L6.25626 6.68091L3.11707 3.55469L0 6.66702L1.10352 7.77206L2.34772 6.52985V14.1032C2.34436 14.7275 2.58469 15.3151 3.02475 15.7581C3.46695 16.203 4.0564 16.4482 4.6846 16.4482H14.6602L13.092 14.8865H12.811Z" fill="#6C757D"/>
       </svg>
-    = link_to "シェア#{shares_count > 0 ? '・' + shares_count.to_s : ''}", answer_shares_path(answer_id: id), method: :post, remote: true, class: 'social-cta'
+    - if user_signed_in?
+      = link_to "シェア#{shares_count > 0 ? '・' + shares_count.to_s : ''}", answer_shares_path(answer_id: id), method: :post, remote: true, class: 'social-cta'
+    - else
+      = link_to "シェア#{shares_count > 0 ? '・' + shares_count.to_s : ''}", answer_shares_path(answer_id: id), method: :post, class: 'social-cta'

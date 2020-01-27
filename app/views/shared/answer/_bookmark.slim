@@ -15,5 +15,7 @@
       <svg width="20" height="20" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M6.00938 2C5.02725 2 4.21627 2.9026 4.21627 3.99805L4.20752 22L11.3799 19L18.5524 22V20.5566V4C18.5524 2.90694 17.7392 2 16.7592 2H6.00938ZM6.00938 4H16.7592V19.1133L11.3799 16.8633L6.00237 19.1133L6.00938 4Z" fill="#6C757D"/>
       </svg>
-
-    = link_to "ブックマーク#{bookmarks_count > 0 ? '・' + bookmarks_count.to_s : ''}", answer_bookmarks_path(answer_id: id), method: :post, remote: true, class: 'social-cta'
+    - if user_signed_in?
+      = link_to "ブックマーク#{bookmarks_count > 0 ? '・' + bookmarks_count.to_s : ''}", answer_bookmarks_path(answer_id: id), method: :post, remote: true, class: 'social-cta'
+    - else
+      = link_to "ブックマーク#{bookmarks_count > 0 ? '・' + bookmarks_count.to_s : ''}", answer_bookmarks_path(answer_id: id), method: :post, class: 'social-cta'
