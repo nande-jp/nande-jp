@@ -62,7 +62,7 @@
         ul
           - @related_questions.each do |question|
             li.mb-4
-              = link_to question.content, question_path(question.id)
+              = link_to "#{truncate(question.content, length: 15)} <small>(#{question.answers_count}件の答え)</small>".html_safe, question_path(question.id)
 
 
 
