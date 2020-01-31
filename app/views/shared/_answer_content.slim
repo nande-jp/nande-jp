@@ -70,12 +70,12 @@ div.mt-3
 
 
   span.float-right.d-none.d-md-block
-      a.twitter-share-button data-related="twitterapi,twitter" data-size="large" data-text="Q. #{question['content']} A. #{answer['content']} 続きを読む→ #{request.original_url}" data-url="#{request.original_url}" data-via="nande-jp" data-lang='ja' href="https://twitter.com/intent/tweet"  ツイートする
+      a.twitter-share-button data-related="twitterapi,twitter" data-size="large" data-text="Q. #{question['content']} A. #{answer['content']} 続きを読む→" data-url="#{question_path(question['id'])}" data-via="nande2020" data-lang='ja' href="https://twitter.com/intent/tweet"  ツイートする
       script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"
 
   .d-md-none
     .mt-2
-      a.twitter-share-button data-related="twitterapi,twitter" data-size="large" data-text="#{answer['content']}" data-url="#{request.original_url}" data-via="nande-jp" data-lang='ja' href="https://twitter.com/intent/tweet"  ツイートする
+      a.twitter-share-button data-related="twitterapi,twitter" data-size="large" data-text="Q. #{question['content']} A. #{answer['content']} 続きを読む→" data-url="#{question_path(question['id'])}" data-via="nande2020" data-lang='ja' href="https://twitter.com/intent/tweet"  ツイートする
       script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"
 
 - unless defined?(is_detail_page) && !is_detail_page
