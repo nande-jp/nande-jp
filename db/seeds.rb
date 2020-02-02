@@ -4,6 +4,11 @@ Faker::Config.locale = :ja
 require 'csv'
 require 'net/http'
 require 'set'
+require 'mechanize'
+require 'rubygems'
+
+AGENT = Mechanize.new
+BASE_URL = 'https://yomikatawa.com/kanji/'
 
 category_mappings = {
   '日常系' => :daily_occurences,
@@ -18,35 +23,32 @@ gender_mappings = {
   "女の子" => :female
 }
 
+def generate_nickname(name)
+  # Fetch page
+  url = "https://www.namaenomori.com/nickname/make01n?nmY=#{to_hiragana(name)}&myY=&sx=n&nmN=&myN=&im=0"
+  page = AGENT.get(url)
+
+  nicknames = page.search('meta[name="description"]')[0][:content].split('、')
+
+  nicknames.each do |name|
+    return name unless User.find_by_username(name)
+  end
+end
+
+def to_hiragana(kanji)
+  AGENT.get(BASE_URL + kanji).search('#content p').first.inner_text
+end
+
 CSV.foreach(Rails.root.join('lib/tasks/content.csv'), headers: true) do |row|
-  name = Faker::Name.unique.name
+  name = generate_nickname((Faker::Name.unique.name).split(' ')[0])
 
   user = User.create!(email: Faker::Internet.email, username: name, password: 'password')
-  user.children.create!(age: row['age'].to_i, gender: gender_mappings[row['gender']])
 
-  question = user.questions.create!(category: category_mappings[row['category']], content: row['content'])
+  child_name = generate_nickname((Faker::Name.unique.name).split(' ')[1])
+  child = user.children.create!(age: row['age'].to_i, gender: gender_mappings[row['gender']], nickname: child_name)
+
+  question = user.questions.create!(category: category_mappings[row['category']], content: row['content'], child: child)
 
   answer_user = User.order('RANDOM()').first
   answer = question.answers.create!(content: row['answer_content'], points: row['points'], user_id: answer_user.id)
 end
-
-
-
-
-# def working_url?(url, max_redirects=6)
-#   response = nil
-#   seen = Set.new
-#   loop do
-#     url = URI.parse(url)
-#     break if seen.include? url.to_s
-#     break if seen.size > max_redirects
-#     seen.add(url.to_s)
-#     response = Net::HTTP.new(url.host, url.port).request_head(url.path)
-#     if response.kind_of?(Net::HTTPRedirection)
-#       url = response['location']
-#     else
-#       break
-#     end
-#   end
-#   response.kind_of?(Net::HTTPSuccess) && url.to_s
-# end

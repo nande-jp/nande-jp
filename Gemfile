@@ -40,6 +40,7 @@ gem "figaro"
 gem "fog-aws"
 gem 'omniauth-facebook'
 gem 'pry', '~> 0.12.2'
+gem 'mechanize'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

@@ -20,7 +20,5 @@ module NandeJp
 
     config.generators.stylesheets = false
     config.generators.javascripts = false
-
-    config.force_ssl = true
   end
 end
