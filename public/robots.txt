@@ -1,4 +1,6 @@
 # See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+Sitemap: https://www.nande-kids.jp/sitemap.xml.gz
+
 User-agent: googlebot
 Disallow: /terms/
 Disallow: /privacy/
