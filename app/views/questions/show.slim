@@ -65,5 +65,8 @@
               = link_to "#{truncate(question.content, length: 15)} <small>(#{question.answers_count}件の答え)</small>".html_safe, question_path(question.id)
 
 
-
+javascript:
+  $('#answer-form').on('show.bs.modal', function (e) {
+    gtag('event','start',{'event_category':'answer'});
+  })
 

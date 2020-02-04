@@ -7,6 +7,7 @@ class UnsharesController < ApplicationController
 
     respond_to do |format|
       if @share.destroy
+        ga_tracker.event(category: 'share', action: 'delete', label: @answer.id)
         format.js {}
         format.html { redirect_to root_path }
       else

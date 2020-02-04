@@ -15,6 +15,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new(question_params)
 
     if @question.save
+      ga_tracker.event(category: 'question', action: 'add', label: @question.id)
       redirect_to question_path(@question.id)
     else
       flash[:alert] = @question.errors.full_messages[0]
@@ -31,6 +32,6 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:category, :content)
+    params.require(:question).permit(:category, :content, :child_id)
   end
 end

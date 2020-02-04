@@ -8,7 +8,7 @@
         = simple_form_for Question.new do |f|
           = f.input :content, placeholder: '例）なんで空は青いの？', label: '子どものギモン'
           = f.input :category, as: :select, collection: Question.category_map, label: 'ギモンのカテゴリーを選ぶ', include_blank: false
-          = f.input :child, as: :select, collection: current_user.children.map{|child| ["#{child.nickname}（#{child.age}歳）", child.id]}, label: '質問した子ども', include_blank: false, include_hidden: false
+          = f.input :child_id, as: :select, collection: current_user.children.map{|child| ["#{child.nickname}（#{child.age}歳）", child.id]}, label: '質問した子ども', include_blank: false, include_hidden: false
           = link_to '子どもを追加する', edit_user_registration_path, class: 'small float-right'
           .clearfix.mb-4
           = f.button :submit, class: 'btn btn-pop-dark btn-block', value: 'ギモンを投稿する'

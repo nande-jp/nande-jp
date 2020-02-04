@@ -12,6 +12,7 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       if @bookmark.save
+        ga_tracker.event(category: 'bookmark', action: 'add', label: @answer.id)
         format.js {}
         format.html { redirect_to root_path }
       else

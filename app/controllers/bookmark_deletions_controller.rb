@@ -7,6 +7,7 @@ class BookmarkDeletionsController < ApplicationController
 
     respond_to do |format|
       if @bookmark.destroy
+        ga_tracker.event(category: 'bookmark', action: 'delete', label: @answer.id)
         format.js {}
         format.html { redirect_to root_path }
       else

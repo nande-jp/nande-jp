@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def ga_tracker
+    @ga_tracker ||= Staccato.tracker('UA-156425020-1', nil, ssl: true)
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :current_password, :username, :avatar, :age, :gender, children_attributes: [:id, :age, :gender, :nickname, :_destroy]])

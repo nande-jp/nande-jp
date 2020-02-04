@@ -1,6 +1,18 @@
 class RegistrationsController < Devise::RegistrationsController
   respond_to :html, :js
 
+  def new
+    super
+
+    ga_tracker.event(category: 'reg', action: 'start', label: current_user.id)
+  end
+
+  def create
+    super
+
+    ga_tracker.event(category: 'reg', action: 'complete', label: current_user.id)
+  end
+
   def update
     super
 

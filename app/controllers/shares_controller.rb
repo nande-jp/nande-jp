@@ -12,6 +12,7 @@ class SharesController < ApplicationController
 
     respond_to do |format|
       if @share.save
+        ga_tracker.event(category: 'share', action: 'add', label: @answer.id)
         format.js {}
         format.html { redirect_to root_path }
       else
