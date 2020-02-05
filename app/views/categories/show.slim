@@ -1,9 +1,9 @@
-- set_meta_tags title: "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}系のなぜなぜ期の疑問"
+- set_meta_tags title: "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}系のなぜなぜ期のギモン"
 
 .row
   .col-sm-12.col-md-8
     h1.h2.font-weight-bold.mb-4
-      = "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}系の最新の疑問"
+      = "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}系の最新のギモン"
 
     - @questions.each do |question|
       = render partial: 'shared/question_card', locals: {question: question.attributes.merge({"category_name" => question.category_name, "child" => question.child}), user: question.user.attributes.merge({"avatar_url" => question.user.avatar.url}), show_answer_cta: true, children_profile: question.user.children_profile}
