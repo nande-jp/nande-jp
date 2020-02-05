@@ -4,7 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     super
 
-    ga_tracker.event(category: 'reg', action: 'start', label: current_user.id)
+    ga_tracker.event(category: 'reg', action: 'start')
   end
 
   def create
