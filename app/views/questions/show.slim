@@ -71,7 +71,8 @@ javascript:
   })
 
   setTimeout(function() {
-    if (getCookie('hasSeenRegModal') === '') {
+    let isLoggedIn = "#{user_signed_in? ? 1 : 0}"
+    if (getCookie('hasSeenRegModal') === '' && isLoggedIn === '0') {
       $('#reg-form').modal('show');
       let date = new Date();
       date.setTime(date.getTime()+(3*60*60*1000)); // Expire in 3 hours
