@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answers = @question.answers.order(bookmarks_count: :desc).paginate(page: params[:page])
-    @related_questions = Question.where(category: @question.category).order(answers_count: :desc).order('RANDOM()').limit(20)
+    @related_questions = Question.where(category: @question.category).order(answers_count: :desc).order('RANDOM()').limit(10)
   end
 
   private

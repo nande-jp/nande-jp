@@ -1,0 +1,11 @@
+= link_to question_path(question.id), class: 'question-horizontal-card mb-4 pb-4'
+  .question-horizontal-card-image.mr-2
+    - image_path = question.child.gender == 'male' ? 'boy.png' : 'girl.png'
+    = image_tag("fallback/#{image_path}", height: 36, width: 36, style: 'display: inline-block; vertical-align: middle', class: 'mr-2 rounded-circle')
+  .question-horizontal-card-body
+    div.badge.badge-secondary
+      = "#{question.category_name}に関するギモン"
+    .mt-2
+      = truncate(question.content, length: 45)
+    .small.subtext.text-right
+      = "#{question.answers_count}件の答え"

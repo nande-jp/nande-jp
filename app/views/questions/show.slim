@@ -59,11 +59,8 @@
       .card-header
         | 関連のギモン
       .card-body
-        ul
-          - @related_questions.each do |question|
-            li.mb-4
-              = link_to "#{truncate(question.content, length: 15)} <small>(#{question.answers_count}件の答え)</small>".html_safe, question_path(question.id)
-
+        - @related_questions.each do |question|
+          = render partial: 'shared/question/question_horizontal_card', locals: { question: question }
 
 javascript:
   $('#answer-form').on('show.bs.modal', function (e) {
