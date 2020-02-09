@@ -62,8 +62,20 @@
         - @related_questions.each do |question|
           = render partial: 'shared/question/question_horizontal_card', locals: { question: question }
 
+
+  = render partial: 'shared/registration/modal'
+
 javascript:
   $('#answer-form').on('show.bs.modal', function (e) {
     gtag('event','start',{'event_category':'answer'});
   })
 
+  setTimeout(function() {
+    if (getCookie('hasSeenRegModal') === '') {
+      $('#reg-form').modal('show');
+      let date = new Date();
+      date.setTime(date.getTime()+(3*60*60*1000)); // Expire in 3 hours
+
+      document.cookie = `hasSeenRegModal=true; expires=${date.toGMTString()}; path=/`;
+    }
+  }, 5000)
