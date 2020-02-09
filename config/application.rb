@@ -20,5 +20,7 @@ module NandeJp
 
     config.generators.stylesheets = false
     config.generators.javascripts = false
+
+    config.exceptions_app = self.routes
   end
 end
