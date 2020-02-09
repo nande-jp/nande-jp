@@ -1,8 +1,9 @@
-- set_meta_tags title: @question.content
+- description_content = @answers.length > 0 ? @answers.first.content : @questions.content
+- set_meta_tags title: @question.content, description: "#{@question.created_at.strftime("%b %d, %Y")} - #{description_content}"
 
 - set_meta_tags og: { title: 'こどもの「なんで？」を大切にするコミュニティ', description: 'こどもの「なんで？」を大切にするコミュニティ | こどものなぞなぞ集 - 『なんで』', image: '' }
 
-- set_meta_tags twitter: { description: "#{@question.content}"}
+- set_meta_tags twitter: { description: 'こどもの「なんで？」を大切にするコミュニティ | こどものなぞなぞ集 - 『なんで』'}
 
 .row
   .col-md-8.col-sm-12
@@ -29,7 +30,7 @@
           .mt-4.mb-4
             - if user_signed_in?
               button type="button" class="btn btn-pop-dark btn-lg btn-block shadow" data-toggle="modal" data-target="#answer-form"
-                | 答え方を投稿する
+                | ギモンに答える
 
               #answer-form.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"
                 .modal-dialog role="document"
@@ -42,9 +43,9 @@
                       = simple_form_for Answer.new, method: :post, url: question_answers_path(params[:id]) do |f|
                         = f.input :content, placeholder: 'こどもへの答え方を書きましょう', label: 'こどもへの答え方を書く', class: ''
                         = f.input :points, label: '答えのポイント', placeholder: '他のパパ・ママに答えのポイントを教えましょう！'
-                        = f.button :submit, class: 'btn btn-pop-dark btn-block', value: '答えを投稿する'
+                        = f.button :submit, class: 'btn btn-pop-dark btn-block', value: 'ギモンに答える'
             - else
-              = link_to '答え方を投稿する', new_user_session_path, class: 'btn btn-pop-dark btn-lg btn-block shadow', type: 'button'
+              = link_to 'ギモンに答える', new_user_session_path, class: 'btn btn-pop-dark btn-lg btn-block shadow', type: 'button'
 
     .mt-4
       h4 = "#{@question.answers_count}件の答え"
