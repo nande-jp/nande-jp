@@ -43,6 +43,7 @@ gem 'pry', '~> 0.12.2'
 gem 'mechanize'
 gem 'staccato'
 gem 'sitemap_generator'
+gem 'activeadmin'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

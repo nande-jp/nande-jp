@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
+  ActiveAdmin.routes(self)
   get 'errors/not_found'
   get 'errors/internal_server_error'
   devise_for :users, controllers: { registrations: 'registrations' }

@@ -52,3 +52,5 @@ CSV.foreach(Rails.root.join('lib/tasks/content.csv'), headers: true) do |row|
   answer_user = User.order('RANDOM()').first
   answer = question.answers.create!(content: row['answer_content'], points: row['points'], user_id: answer_user.id)
 end
+
+AdminUser.create!(email: 'admin@nande-kids.jp', password: 'shibayama2013', password_confirmation: 'shibayama2013') if Rails.env.development?
