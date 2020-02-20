@@ -9,12 +9,12 @@ class User < ApplicationRecord
   validates_presence_of :username
   validates_uniqueness_of :username
 
-  has_many :questions
-  has_many :answers
-  has_many :bookmarks
-  has_many :shares
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :shares, dependent: :destroy
 
-  has_many :follows
+  has_many :follows, dependent: :destroy
 
   has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :follower_relationships, source: :follower
@@ -22,7 +22,7 @@ class User < ApplicationRecord
   has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :followings, through: :following_relationships, source: :following
 
-  has_many :children
+  has_many :children, dependent: :destroy
   accepts_nested_attributes_for :children, allow_destroy: true, reject_if: ->(child){ child['age'].blank? && child['gender'].blank? }
 
   enum gender: [:male, :female, :other]

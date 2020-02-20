@@ -2,8 +2,8 @@ class Answer < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :question, counter_cache: true
 
-  has_many :bookmarks
-  has_many :shares
+  has_many :bookmarks, dependent: :destroy
+  has_many :shares, dependent: :destroy
 
   enum category: [:for_parents, :for_children]
 

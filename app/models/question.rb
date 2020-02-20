@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :child
-  has_many :answers
+  has_many :answers, dependent: :destroy
 
   enum category: [:nature, :science, :philosophy, :daily_occurences]
 
