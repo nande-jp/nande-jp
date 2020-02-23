@@ -10,7 +10,9 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super
 
-    ga_tracker.event(category: 'reg', action: 'complete', label: current_user.id)
+    if user_signed_in?
+      ga_tracker.event(category: 'reg', action: 'complete', label: current_user.id)
+    end
   end
 
   def update
