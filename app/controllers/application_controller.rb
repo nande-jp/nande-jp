@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     if session.key?(:_nonreg_pvs)
       if session[:_nonreg_pvs_expire_at] < Time.current
         session[:_nonreg_pvs] = 1
+        session[:_nonreg_pvs_expire_at] = Time.current + 24.hours
         return
       end
 
