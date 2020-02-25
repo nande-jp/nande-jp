@@ -24,11 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_reg_wall
-    return @display_reg_wall = false if user_signed_in?
-
-    return if session[:_nonreg_pvs].to_i < REG_WALL_THRESHOLD
-
-    @display_reg_wall = true
+    @display_reg_wall = !user_signed_in? && session[:_nonreg_pvs].to_i >= REG_WALL_THRESHOLD
   end
 
   def ga_tracker
