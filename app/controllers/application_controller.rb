@@ -2,7 +2,34 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :store_user_location!, if: :storable_location?
 
+  REG_WALL_THRESHOLD = 3
+
   protected
+
+  def record_pv
+    return if user_signed_in?
+
+    if session.key?(:_nonreg_pvs)
+      if session[:_nonreg_pvs_expire_at] < Time.current
+        session[:_nonreg_pvs] = 1
+        return
+      end
+
+      session[:_nonreg_pvs] += 1
+      return
+    end
+
+    session[:_nonreg_pvs] = 1
+    session[:_nonreg_pvs_expire_at] = Time.current + 24.hours
+  end
+
+  def set_reg_wall
+    return @display_reg_wall = false if user_signed_in?
+
+    return if session[:_nonreg_pvs].to_i < REG_WALL_THRESHOLD
+
+    @display_reg_wall = true
+  end
 
   def ga_tracker
     @ga_tracker ||= Staccato.tracker('UA-156425020-1', nil, ssl: true)

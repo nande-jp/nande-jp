@@ -71,13 +71,13 @@ javascript:
     gtag('event','start',{'event_category':'answer'});
   })
 
-  setTimeout(function() {
-    let isLoggedIn = "#{user_signed_in? ? 1 : 0}"
-    if (getCookie('hasSeenRegModal') === '' && isLoggedIn === '0') {
-      $('#reg-form').modal('show');
-      let date = new Date();
-      date.setTime(date.getTime()+(3*60*60*1000)); // Expire in 3 hours
+  // setTimeout(function() {
+  //   let isLoggedIn = "#{user_signed_in? ? 1 : 0}"
+  //   if (getCookie('hasSeenRegModal') === '' && isLoggedIn === '0') {
+  //     $('#reg-form').modal('show');
+  //     let date = new Date();
+  //     date.setTime(date.getTime()+(3*60*60*1000)); // Expire in 3 hours
 
-      document.cookie = `hasSeenRegModal=true; expires=${date.toGMTString()}; path=/`;
-    }
-  }, 5000)
+  //     document.cookie = `hasSeenRegModal=true; expires=${date.toGMTString()}; path=/`;
+  //   }
+  // }, 5000)

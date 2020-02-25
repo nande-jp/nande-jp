@@ -1,5 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
+  before_action :record_pv, only: [:show]
+  before_action :set_reg_wall, only: [:show]
 
   def index
     if params[:category]
