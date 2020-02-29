@@ -46,17 +46,7 @@ end
 CSV.foreach(Rails.root.join('lib/tasks/new_content_0226.csv'), headers: true) do |row|
   name = generate_nickname((Faker::Name.unique.name).split(' ')[0])
 
-  until User.find_by_username(name).nil?
-    name = generate_nickname((Faker::Name.unique.name).split(' ')[0])
-  end
-
-  email = Faker::Internet.email
-
-  until User.find_by_email(email).nil?
-    email = Faker::Internet.email
-  end
-
-  user = User.create!(email: email, username: name, password: 'password')
+  user = User.order('RANDOM()').first
 
   child_name = generate_nickname((Faker::Name.unique.name).split(' ')[1])
   child = user.children.create!(age: row['age'].to_i, gender: gender_mappings[row['gender']], nickname: child_name)
@@ -65,7 +55,7 @@ CSV.foreach(Rails.root.join('lib/tasks/new_content_0226.csv'), headers: true) do
 
   question = user.questions.create!(category: category_mappings[row['category']], content: row['content'], child: child)
 
-  answer_user = User.order('RANDOM()').first
+  answer_user = User.where.not(id: user.id).order('RANDOM()').first
   answer = question.answers.create!(content: row['answer_content'], points: row['points'], user_id: answer_user.id)
 end
 
