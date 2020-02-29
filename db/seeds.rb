@@ -36,16 +36,32 @@ def generate_nickname(name)
 end
 
 def to_hiragana(kanji)
-  AGENT.get(BASE_URL + kanji).search('#content p').first.inner_text
+  begin
+    AGENT.get(BASE_URL + kanji).search('#content p').first.inner_text
+  rescue
+    return kanji
+  end
 end
 
-CSV.foreach(Rails.root.join('lib/tasks/content.csv'), headers: true) do |row|
+CSV.foreach(Rails.root.join('lib/tasks/new_content_0226.csv'), headers: true) do |row|
   name = generate_nickname((Faker::Name.unique.name).split(' ')[0])
 
-  user = User.create!(email: Faker::Internet.email, username: name, password: 'password')
+  until User.find_by_username(name).nil?
+    name = generate_nickname((Faker::Name.unique.name).split(' ')[0])
+  end
+
+  email = Faker::Internet.email
+
+  until User.find_by_email(email).nil?
+    email = Faker::Internet.email
+  end
+
+  user = User.create!(email: email, username: name, password: 'password')
 
   child_name = generate_nickname((Faker::Name.unique.name).split(' ')[1])
   child = user.children.create!(age: row['age'].to_i, gender: gender_mappings[row['gender']], nickname: child_name)
+
+  next unless Question.find_by_content(row['content']).nil?
 
   question = user.questions.create!(category: category_mappings[row['category']], content: row['content'], child: child)
 
@@ -53,4 +69,4 @@ CSV.foreach(Rails.root.join('lib/tasks/content.csv'), headers: true) do |row|
   answer = question.answers.create!(content: row['answer_content'], points: row['points'], user_id: answer_user.id)
 end
 
-AdminUser.create!(email: 'admin@nande-kids.jp', password: 'shibayama2013', password_confirmation: 'shibayama2013') if Rails.env.development?
+AdminUser.create!(email: 'admin@nande-kids.jp', password: 'shibayama2013', password_confirmation: 'shibayama2013') if Rails.env.development? && AdminUser.count == 0
