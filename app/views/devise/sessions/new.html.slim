@@ -5,6 +5,13 @@
         = t('.sign_in')
       .card-body
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = link_to user_twitter_omniauth_authorize_path, class: "btn btn-pop btn-lg btn-twitter text-white btn-block text-center" do
+            span
+              i class="fab fa-twitter mr-1"
+            | Twitterでログイン
+
+          hr
+
           .form-group
             = f.label :email
             = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
