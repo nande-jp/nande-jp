@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     resources :answers, only: [:create]
   end
 
+  scope module: 'questions' do
+    resources :ages, only: :show, path: '/questions/ages'
+  end
+
   resources :categories
 
   resources :answers, only: [] do
