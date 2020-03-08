@@ -1,3 +1,5 @@
+- set_meta_tags title: "#{params[:id]}歳のなぜなぜ期のギモン"
+
 .row
   .col-sm-12.col-md-8
     .card
@@ -12,10 +14,10 @@
                   div class="#{params[:id] == i.to_s ? 'card-highlight' : ''} card-body"
                     = "#{i}歳"
     .mt-4
-    - @questions.each do |question|
-      = render partial: 'shared/question_card', locals: {question: question.attributes.merge({"category_name" => question.category_name, "child" => question.child}), user: question.user.attributes.merge({"avatar_url" => question.user.avatar.url}), show_answer_cta: true, children_profile: question.user.children_profile}
+    - @answers.each do |answer|
+      = render partial: 'shared/answer_card', locals: {answer: answer, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), question: answer.question.attributes.merge({'child' => answer.question.child}), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), children_profile: answer.user.children_profile, show_child_name: true}
 
-    = will_paginate @questions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+    = will_paginate @answers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 
   .col-sm-4.d-none.d-sm-block
     = render partial: 'shared/sidenav/popular_questions', locals: {popular_questions: @popular_questions}
