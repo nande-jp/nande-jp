@@ -38,6 +38,9 @@ html
     = render partial: 'shared/nav'
 
     .container
+      - flash.each do |key, value|
+        = render partial: 'shared/flash', locals: {content: value, type: key}
+
       = yield
 
   footer.font-small

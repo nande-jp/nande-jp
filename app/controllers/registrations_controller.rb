@@ -2,7 +2,17 @@ class RegistrationsController < Devise::RegistrationsController
   respond_to :html, :js
 
   def new
-    super
+    super do
+
+      twitter_data = session["devise.twitter_data"]
+
+      if twitter_data
+        @user = User.new(username: twitter_data.info.nickname, email: twitter_data.info.email, avatar: twitter_data.info.image, uid: twitter_data.uid, provider: twitter_data.provider)
+      else
+        @user = User.new
+      end
+
+    end
 
     ga_tracker.event(category: 'reg', action: 'start')
   end

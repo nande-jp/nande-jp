@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :store_user_location!, if: :storable_location?
+  before_action :clear_oauth_session, unless: :devise_controller?
 
   REG_WALL_THRESHOLD = 3
 
   protected
+
+  def clear_oauth_session
+    session["devise.twitter_data"] = nil
+  end
 
   def record_pv
     return if user_signed_in?
@@ -33,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :uid, :provider])
     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :current_password, :username, :avatar, :age, :gender, children_attributes: [:id, :age, :gender, :nickname, :_destroy]])
   end
 

@@ -1,8 +1,5 @@
 .row
   .col-sm-12.col-md-8
-    - flash.each do |key, value|
-      = render partial: 'shared/flash', locals: {content: value, type: key}
-
     - if user_signed_in?
       .card
         .card-body

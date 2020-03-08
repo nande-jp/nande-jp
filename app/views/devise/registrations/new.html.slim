@@ -4,34 +4,46 @@
       .card-header
         = t('.sign_up')
       .card-body
-        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = form_for(@user, url: registration_path(@user)) do |f|
           = bootstrap_devise_error_messages!
 
-          / = link_to user_twitter_omniauth_authorize_path, class: "btn btn-pop btn-lg btn-twitter text-white btn-block text-center" do
-          /   span
-          /     i class="fab fa-twitter mr-1"
-          /   | Twitterで登録
+          - if @user.provider == 'twitter'
+            div class="alert-success show alert"
+              | 残りの情報を入力して登録を完了しましょう！
 
-          / hr
+          - else
 
-          .form-group
-            = f.label :email
-            = f.email_field :email, autocomplete: 'email', placeholder: 'taro@nande.com', class: 'form-control'
-          .form-group
-            = f.label :password
-            = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
-            - if @minimum_password_length
-              small.form-text.text-muted
-                = t('devise.shared.minimum_password_length', count: @minimum_password_length)
-          .form-group
-            = f.label :password_confirmation
-            = f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control'
+            = link_to user_twitter_omniauth_authorize_path, class: "btn btn-pop btn-lg btn-twitter text-white btn-block text-center" do
+              span
+                i class="fab fa-twitter mr-1"
+              | Twitterで登録
+
+            hr
+
+          - if @user.email.blank? && @user.provider.nil?
+            .form-group
+              = f.label :email
+              = f.email_field :email, autocomplete: 'email', placeholder: 'taro@nande.com', class: 'form-control'
+          - if @user.provider.nil?
+            .form-group
+              = f.label :password
+              = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
+              - if @minimum_password_length
+                small.form-text.text-muted
+                  = t('devise.shared.minimum_password_length', count: @minimum_password_length)
           .form-group
             = f.label :username
-            = f.text_field :username, autofocus: true, autocomplete: 'username', class: 'form-control'
+            = f.text_field :username, autocomplete: 'username', class: 'form-control'
           .form-group
             p.small.subtext
               | 当サービスの<a href="/terms" target="_blank">利用規約</a>及び<a href="/privacy" target="_blank">プライバシーポリシー</a>にご同意の上、登録してください。
+
+          - if @user.provider == 'twitter'
+            = f.hidden_field :password, value: Devise.friendly_token[0, 20]
+            = f.hidden_field :provider
+            = f.hidden_field :uid
+            = f.hidden_field :avatar
+
           .form-group
             = f.submit t('.sign_up'), class: 'btn btn-pop btn-block shadow btn-lg'
         = render 'devise/shared/links'
