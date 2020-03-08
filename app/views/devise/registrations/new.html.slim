@@ -20,10 +20,9 @@
 
             hr
 
-          - unless (@user.provider.present? && @user.email.present?)
-            .form-group
-              = f.label :email
-              = f.email_field :email, autocomplete: 'email', placeholder: 'taro@nande.com', class: 'form-control'
+          .form-group
+            = f.label :email
+            = f.email_field :email, autocomplete: 'email', placeholder: 'taro@nande.com', class: 'form-control'
           - if @user.provider.nil?
             .form-group
               = f.label :password
