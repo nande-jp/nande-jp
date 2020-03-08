@@ -43,13 +43,26 @@
         .card-body
           h5.font-weight-bold 年齢別でギモンを見る
 
-          .row.text-center
+          .row.text-center.no-gutters
             - 3.upto(6) do |i|
-              .col-md-3
+              .col-md-3.col-6
                 = link_to age_path(i) do
                   .card
                     .card-body
                       = "#{i}歳"
+
+    .mt-4
+      .card
+        .card-body
+          h5.font-weight-bold カテゴリー別でギモンを見る
+
+          .row.text-center.no-gutters
+            - Question.categories.keys.to_a.each do |category|
+              .col-md-3.col-6
+                = link_to category_path(id: category)
+                  .card
+                    .card-body
+                      = "#{I18n.t("activerecord.attributes.question.categories.#{category}")}系"
 
 
 
