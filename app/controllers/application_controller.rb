@@ -57,6 +57,9 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
+    if resource.age.blank? && resource.gender.blank?
+      return onboarding_index_path
+    end
     stored_location_for(resource_or_scope) || super
   end
 end
