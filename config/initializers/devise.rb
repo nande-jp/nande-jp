@@ -261,7 +261,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   if Rails.env.production?
-    config.omniauth :twitter, Rails.application.credentials.fetch((:twitter_api_key), Rails.application.credentials.fetch(:twitter_secret_key))
+    config.omniauth :twitter, 'IYBntpJI2HEbT5aIhCcnV2tch', '8ufcbhhtS7awQpLOZlie44FkZaajlfzMCpy1MHhYL0uAn4MCQV'
   else
     config.omniauth :twitter, 'WFZYQOMFvABRhab95iJePIeIp', 'mVUm1OQ0Ljaf5FJrOts8I76o21HdA0VphEKGzo3j2vuM4SQX6e'
   end
