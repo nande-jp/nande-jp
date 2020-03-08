@@ -4,21 +4,22 @@
 h1.h2.font-weight-bold.mb-4
   = "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}系の最新のギモン"
 
-.card
-  .card-body
-    h5.font-weight-bold カテゴリー別でギモンを見る
-
-    .row.text-center.no-gutters
-      - Question.categories.keys.to_a.each do |category|
-        .col-md-3.col-6
-          = link_to category_path(id: category)
-            .card
-               div class="#{params[:id] == category ? 'card-highlight' : ''} card-body"
-                = "#{I18n.t("activerecord.attributes.question.categories.#{category}")}系"
-
-
 .row.mt-4
   .col-sm-12.col-md-8
+    .card
+      .card-body
+        h5.font-weight-bold カテゴリー別でギモンを見る
+
+        .row.text-center.no-gutters
+          - Question.categories.keys.to_a.each do |category|
+            .col-md-3.col-6
+              = link_to category_path(id: category)
+                .card
+                   div class="#{params[:id] == category ? 'card-highlight' : ''} card-body"
+                    = "#{I18n.t("activerecord.attributes.question.categories.#{category}")}系"
+
+    .mt-4
+
     - @answers.each do |answer|
       = render partial: 'shared/answer_card', locals: {answer: answer, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), question: answer.question.attributes.merge({'child' => answer.question.child}), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), children_profile: answer.user.children_profile, show_child_name: true}
 
