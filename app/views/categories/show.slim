@@ -11,6 +11,7 @@ h1.h2.font-weight-bold.mb-4
     .row.text-center.no-gutters
       - Question.categories.keys.to_a.each do |category|
         .col-md-3.col-6
+          = link_to category_path(id: category)
             .card
                div class="#{params[:id] == category ? 'card-highlight' : ''} card-body"
                 = "#{I18n.t("activerecord.attributes.question.categories.#{category}")}系"
