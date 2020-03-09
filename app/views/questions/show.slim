@@ -1,4 +1,4 @@
-- description_content = @answers.length > 0 ? @answers.first.content : @questions.content
+- description_content = @answers.length > 0 ? @answers.first.content : @question.content
 - set_meta_tags title: @question.content, description: "#{@question.created_at.strftime("%b %d, %Y")} - #{description_content}"
 
 - set_meta_tags og: { title: 'こどもの「なんで？」を大切にするコミュニティ', description: 'こどもの「なんで？」を大切にするコミュニティ | こどものなぞなぞ集 - 『なんで』', image: '' }
