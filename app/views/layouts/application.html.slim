@@ -37,6 +37,8 @@ html
 
     = render partial: 'shared/nav'
 
+    - if current_page?(controller: 'top', action: 'index')
+      = render partial: 'shared/top/banner'
     .container
       - flash.each do |key, value|
         = render partial: 'shared/flash', locals: {content: value, type: key}

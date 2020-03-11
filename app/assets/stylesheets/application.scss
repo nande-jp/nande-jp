@@ -172,3 +172,13 @@ h1,h2,h3,h4,h5,h6 {
   background: #1681b2;
   color: white;
 }
+
+.header-component {
+  background-color: #ffe98a;
+  height: 100%;
+  width: 100%;
+
+  h1,h2,h3 {
+    color: #3a3a3a;
+  }
+}

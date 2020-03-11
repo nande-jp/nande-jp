@@ -1,3 +1,21 @@
+
+.mt-4.w-100
+  .row
+    .col-12.col-md-8
+      .d-flex.justify-content-between
+        .card.text-center style="width: 30%"
+          .card-body
+            h5.mb-0.font-weight-bold ランキング
+
+        .card.text-center style="width: 30%"
+          .card-body
+            h5.mb-0.font-weight-bold カテゴリー
+
+        .card.text-center style="width: 30%"
+          .card-body
+            h5.mb-0.font-weight-bold 年齢別
+
+
 .row
   .col-sm-12.col-md-8
     - if user_signed_in?
@@ -18,48 +36,48 @@
           #question-form.modal.fade aria-hidden="true" aria-labelledby="questionForm" role="dialog" tabindex="-1"
             = render partial: 'shared/question_form'
     - else
-      .card
-        .card-body
-          / div.mb-1
-          /   = image_tag(current_user.avatar.url, height: 24, width: 24, style: 'display: inline-block; vertical-align: middle', class: 'mr-2 rounded-circle')
-          /   div style='display: inline-block'
-          /     div = link_to "#{current_user.username}さん #{current_user.children_profile}", user_path(current_user.id), class: 'username-link'
+      / .card
+      /   .card-body
+      /     / div.mb-1
+      /     /   = image_tag(current_user.avatar.url, height: 24, width: 24, style: 'display: inline-block; vertical-align: middle', class: 'mr-2 rounded-circle')
+      /     /   div style='display: inline-block'
+      /     /     div = link_to "#{current_user.username}さん #{current_user.children_profile}", user_path(current_user.id), class: 'username-link'
 
-          = link_to new_user_registration_path, class: 'btn-plain mt-3', type: 'button'
-            h4 style='font-weight: 700;color: #999;' こどもに聞かれたギモンを投稿する
+      /     = link_to new_user_registration_path, class: 'btn-plain mt-3', type: 'button'
+      /       h4 style='font-weight: 700;color: #999;' こどもに聞かれたギモンを投稿する
 
-          div.mt-2
-            = link_to '登録する', new_user_registration_path, class: 'btn btn-pop-dark btn-lg btn-block shadow'
+      /     div.mt-2
+      /       = link_to '登録する', new_user_registration_path, class: 'btn btn-pop-dark btn-lg btn-block shadow'
 
       / h1.h4.font-weight-bold nandeはこどもの「なんで？」を大切にするコミュニティです。
 
       / = link_to '登録する', new_user_registration_path, class: 'btn btn-pop btn-lg shadow btn-block mt-4 mb-4'
 
-    .mt-4
-      .card
-        .card-body
-          h5.font-weight-bold 年齢別でギモンを見る
 
-          .row.text-center.no-gutters
-            - 3.upto(6) do |i|
-              .col-md-3.col-6
-                = link_to age_path(i) do
-                  .card
-                    .card-body
-                      = "#{i}歳"
+      / .card
+      /   .card-body
+      /     h5.font-weight-bold 年齢別でギモンを見る
 
-    .mt-4
-      .card
-        .card-body
-          h5.font-weight-bold カテゴリー別でギモンを見る
+      /     .row.text-center.no-gutters
+      /       - 3.upto(6) do |i|
+      /         .col-md-3.col-6
+      /           = link_to age_path(i) do
+      /             .card
+      /               .card-body
+      /                 = "#{i}歳"
 
-          .row.text-center.no-gutters
-            - Question.categories.keys.to_a.each do |category|
-              .col-md-3.col-6
-                = link_to category_path(id: category)
-                  .card
-                    .card-body
-                      = "#{I18n.t("activerecord.attributes.question.categories.#{category}")}系"
+    / .mt-4
+    /   .card
+    /     .card-body
+    /       h5.font-weight-bold カテゴリー別でギモンを見る
+
+    /       .row.text-center.no-gutters
+    /         - Question.categories.keys.to_a.each do |category|
+    /           .col-md-3.col-6
+    /             = link_to category_path(id: category)
+    /               .card
+    /                 .card-body
+    /                   = "#{I18n.t("activerecord.attributes.question.categories.#{category}")}系"
 
 
 
@@ -74,7 +92,7 @@
         = render partial: 'shared/answer_card', locals: {answer: post['answer'], user: post['user'], question: post['question'], post_type: post['post_type'], is_bookmarked_by_current_user: post['is_bookmarked_by_current_user'], is_shared_by_current_user: post['is_shared_by_current_user'], children_profile: post['user']['children_profile'], shared_by: post['shared_by'], show_child_name: true}
 
     = link_to 'もっと見る', root_path(page: params.fetch(:page, 1).to_i + 1), class: 'btn btn-pop-dark btn-block btn-lg mt-4'
-  .col-sm-4.d-none.d-sm-block
+  .mt-4.col-sm-4.d-none.d-sm-block
     = render partial: 'shared/sidenav/popular_questions', locals: {popular_questions: @popular_questions}
 
     .mt-4
