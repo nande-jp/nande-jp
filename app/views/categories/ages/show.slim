@@ -1,8 +1,8 @@
-- set_meta_tags title: "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}系のなぜなぜ期のギモン"
+- set_meta_tags title: "#{params[:id]}歳こどもの#{I18n.t("activerecord.attributes.question.categories.#{params[:category_id]}")}系のなぜなぜ期のギモン"
 
 
 h1.h2.font-weight-bold.mb-4
-  = "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}系の最新のギモン"
+  = "#{params[:id]}歳こどもの#{I18n.t("activerecord.attributes.question.categories.#{params[:category_id]}")}系のなぜなぜ期のギモン"
 
 .row.mt-4
   .col-sm-12.col-md-8
@@ -15,7 +15,7 @@ h1.h2.font-weight-bold.mb-4
             .col-md-3.col-6
               = link_to category_path(id: category)
                 .card
-                   div class="#{params[:id] == category ? 'card-highlight' : ''} card-body"
+                   div class="#{params[:category_id] == category ? 'card-highlight' : ''} card-body"
                     = "#{I18n.t("activerecord.attributes.question.categories.#{category}")}系"
 
     .mt-4
@@ -28,9 +28,9 @@ h1.h2.font-weight-bold.mb-4
         .row.text-center.no-gutters
           - 3.upto(6) do |i|
             .col-md-3.col-6
-              = link_to category_age_path(category_id: params[:id], id: i) do
+              = link_to category_age_path(category_id: params[:category_id], id: i) do
                 .card
-                  .card-body
+                  div class="#{params[:id].to_i == i ? 'card-highlight' : ''} card-body"
                     = "#{i}歳"
 
     .mt-4

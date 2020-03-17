@@ -16,4 +16,8 @@ class Question < ApplicationRecord
       [I18n.t("activerecord.attributes.#{model_name.i18n_key}.categories.#{category}"), category]
     end
   end
+
+  def self.category_to_enum(category)
+    self.categories[category]
+  end
 end

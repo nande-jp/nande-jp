@@ -1,0 +1,2 @@
+module Categories::AgesHelper
+end
