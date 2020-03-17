@@ -41,6 +41,9 @@ html
       - flash.each do |key, value|
         = render partial: 'shared/flash', locals: {content: value, type: key}
 
+      .mb-2.breadcrumb-container
+        = render_breadcrumbs :separator => ' > '
+
       = yield
 
   footer.font-small

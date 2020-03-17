@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  add_breadcrumb "ホーム", :root_path
+
   before_action :authenticate_user!, only: [:create]
   before_action :record_pv, only: [:show]
   before_action :set_reg_wall, only: [:show]
@@ -29,6 +31,9 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @answers = @question.answers.order(bookmarks_count: :desc).paginate(page: params[:page])
     @related_questions = Question.where(category: @question.category).order(answers_count: :desc).order('RANDOM()').limit(10)
+
+    add_breadcrumb "ギモン一覧", questions_path
+    add_breadcrumb @question.content
   end
 
   private
