@@ -16,11 +16,6 @@ SitemapGenerator::Sitemap.create do
   # Examples:
   #
 
-  add questions_path, :priority => 0.7, :changefreq => 'daily'
-  Question.find_each do |question|
-    add questions_path(question), :lastmod => question.updated_at
-  end
-
   Question.categories.keys.to_a.each do |category|
     add category_path(id: category), :priority => 0.3, :changefreq => 'daily'
   end
@@ -30,4 +25,15 @@ SitemapGenerator::Sitemap.create do
       add category_age_path(category_id: category, id: age), :priority => 0.5, :changefreq => 'daily'
     end
   end
+
+  add questions_path, :priority => 0.2, :changefreq => 'daily'
+  Question.find_each do |question|
+    add questions_path(question), :lastmod => question.updated_at
+  end
+
+  3.upto(6).each do |age|
+    add age_path(id: age), priority: 0.5, changefreq: 'daily'
+  end
+
+  add rankings_path, priority: 0.5, changefreq: 'weekly'
 end
