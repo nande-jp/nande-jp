@@ -18,6 +18,12 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  scope module: 'categories' do
+    resources :categories do
+      resources :ages
+    end
+  end
+
   resources :answers, only: [] do
     resources :bookmarks, only: [:create]
     resources :bookmark_deletions, only: [:create]
@@ -31,6 +37,9 @@ Rails.application.routes.draw do
     resources :follows, only: [:create]
     resources :unfollows, only: [:create]
   end
+
+  resources :rankings
+  resources :ages, only: :index
 
   resources :onboarding
 

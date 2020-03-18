@@ -1,8 +1,8 @@
-- set_meta_tags title: "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}に関するなぜなぜ期ギモン"
+- set_meta_tags title: "年齢別こどものなぜなぜ期ギモン"
 
 
 h1.h2.font-weight-bold.mb-4
-  = "#{I18n.t("activerecord.attributes.question.categories.#{params[:id]}")}に関する最新のギモン"
+  = "年齢別こどものなぜなぜ期ギモン"
 
 .row.mt-4
   .col-sm-12.col-md-8
@@ -15,7 +15,7 @@ h1.h2.font-weight-bold.mb-4
             .col-md-3.col-6
               = link_to category_path(id: category)
                 .card
-                   div class="#{params[:id] == category ? 'card-highlight' : ''} card-body"
+                   .card-body
                     = "#{I18n.t("activerecord.attributes.question.categories.#{category}")}系"
 
     .mt-4
@@ -28,7 +28,7 @@ h1.h2.font-weight-bold.mb-4
         .row.text-center.no-gutters
           - 3.upto(6) do |i|
             .col-md-3.col-6
-              = link_to category_age_path(category_id: params[:id], id: i) do
+              = link_to age_path(id: i) do
                 .card
                   .card-body
                     = "#{i}歳"

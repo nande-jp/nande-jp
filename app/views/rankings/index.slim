@@ -1,0 +1,19 @@
+- set_meta_tags title: "こどものなぜなぜ期ギモン人気ランキング"
+
+
+h1.h2.font-weight-bold.mb-4
+  = "こどものなぜなぜ期ギモン人気ランキング"
+
+.row.mt-4
+  .col-sm-12.col-md-8
+
+    - @answers.each do |answer|
+      = render partial: 'shared/answer_card', locals: {answer: answer, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), question: answer.question.attributes.merge({'child' => answer.question.child}), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), children_profile: answer.user.children_profile, show_child_name: true}
+
+    = will_paginate @answers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+
+  .col-sm-4.d-none.d-sm-block
+    = render partial: 'shared/sidenav/popular_questions', locals: {popular_questions: @popular_questions}
+
+    .mt-4
+      = render partial: 'shared/sidenav/categories'

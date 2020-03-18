@@ -1,7 +1,9 @@
-- set_meta_tags title: "#{params[:id]}歳のなぜなぜ期のギモン"
+- set_meta_tags title: "#{params[:id]}歳こどものなぜなぜ期ギモン"
 
 .row
   .col-sm-12.col-md-8
+    h1.h2.font-weight-bold.mb-4 = "#{params[:id]}歳こどものなぜなぜ期ギモン"
+
     .card
       .card-body
         h5.font-weight-bold 年齢別でギモンを見る
@@ -13,6 +15,21 @@
                 div.class
                   div class="#{params[:id] == i.to_s ? 'card-highlight' : ''} card-body"
                     = "#{i}歳"
+
+    .mt-4
+    .col-sm-12.col-md-8
+    .card
+      .card-body
+        h5.font-weight-bold カテゴリー別でギモンを見る
+
+        .row.text-center.no-gutters
+          - Question.categories.keys.to_a.each do |category|
+            .col-md-3.col-6
+              = link_to category_age_path(category_id: category, id: params[:id])
+                .card
+                   .card-body
+                    = "#{I18n.t("activerecord.attributes.question.categories.#{category}")}系"
+
     .mt-4
     - @answers.each do |answer|
       = render partial: 'shared/answer_card', locals: {answer: answer, user: answer.user.attributes.merge({'avatar_url' => answer.user.avatar.url}), question: answer.question.attributes.merge({'child' => answer.question.child}), is_bookmarked_by_current_user: answer.bookmarked_by?(user_signed_in? ? current_user : nil), is_shared_by_current_user: answer.shared_by?(user_signed_in? ? current_user : nil), children_profile: answer.user.children_profile, show_child_name: true}

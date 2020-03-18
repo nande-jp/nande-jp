@@ -24,4 +24,10 @@ SitemapGenerator::Sitemap.create do
   Question.categories.keys.to_a.each do |category|
     add category_path(id: category), :priority => 0.3, :changefreq => 'daily'
   end
+
+  Question.categories.keys.to_a.each do |category|
+    3.upto(6).each do |age|
+      add category_age_path(category_id: category, id: age), :priority => 0.5, :changefreq => 'daily'
+    end
+  end
 end

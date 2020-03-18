@@ -131,6 +131,8 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
+    breadcrumbs_on_rails (4.0.0)
+      rails (>= 5.0)
     builder (3.2.4)
     byebug (11.0.1)
     capybara (3.29.0)
@@ -452,6 +454,7 @@ DEPENDENCIES
   activerecord-session_store
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.4.1)
+  breadcrumbs_on_rails
   byebug
   capybara (>= 2.15)
   carrierwave (~> 2.0)
