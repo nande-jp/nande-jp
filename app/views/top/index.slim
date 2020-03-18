@@ -24,17 +24,17 @@
           .d-flex.justify-content-between
             .card.text-center style="width: 30%"
               .card-body
-                h5.mb-0.font-weight-bold
+                h5.mb-0.font-weight-bold.small
                   = link_to 'ランキング', rankings_path
 
             .card.text-center style="width: 30%"
               .card-body
-                h5.mb-0.font-weight-bold
+                h5.mb-0.font-weight-bold.small
                   = link_to 'カテゴリー', categories_path
 
             .card.text-center style="width: 30%"
               .card-body
-                h5.mb-0.font-weight-bold
+                h5.mb-0.font-weight-bold.small
                   = link_to '年齢別', ages_path
 
     - @posts.each do |post|
