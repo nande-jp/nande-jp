@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :clear_oauth_session, unless: :devise_controller?
 
-  REG_WALL_THRESHOLD = 3
+  REG_WALL_THRESHOLD = 1
 
   protected
 
