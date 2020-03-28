@@ -1,5 +1,5 @@
 - description_content = @answers.length > 0 ? "#{@answers.first.content} 【答え方のポイント】 #{@answers.first.points}" : @question.content
-- set_meta_tags title: @question.content, description: "#{@question.created_at.strftime("%b %d, %Y")} - #{description_content} | こどもの知的好奇心を向上するなぜなぜ期ギモン・回答集 【nande】"
+- set_meta_tags title: @question.content, description: "#{DateTime.now.strftime("%b %d, %Y")} - #{description_content} | こどもの知的好奇心を向上するなぜなぜ期ギモン・回答集 【nande】"
 
 - set_meta_tags og: { title: @question.content, description: "#{@question.created_at.strftime("%b %d, %Y")} - #{description_content} | こどもの知的好奇心を向上するなぜなぜ期ギモン・回答集 【nande】", image: '' }
 
