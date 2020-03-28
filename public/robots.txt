@@ -4,4 +4,3 @@ Sitemap: https://www.nande-kids.jp/sitemap.xml.gz
 User-agent: googlebot
 Disallow: /terms/
 Disallow: /privacy/
-Disallow: /users/*
