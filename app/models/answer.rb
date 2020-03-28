@@ -11,12 +11,12 @@ class Answer < ApplicationRecord
 
   def bookmarked_by?(evaluating_user)
     return true if user === evaluating_user
-    !user.bookmarks.find_by(answer_id: id).nil?
+    !evaluating_user.bookmarks.find_by(answer_id: id).nil?
   end
 
   def shared_by?(evaluating_user)
     return true if user === evaluating_user
-    !user.shares.find_by(answer_id: id).nil?
+    !evaluating_user.shares.find_by(answer_id: id).nil?
   end
 
   def category_name
