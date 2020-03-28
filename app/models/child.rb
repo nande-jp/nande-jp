@@ -1,6 +1,6 @@
 class Child < ApplicationRecord
   belongs_to :user, counter_cache: true
-  has_many :questions
+  has_many :questions, dependent: true
 
   validates_presence_of :age, :gender, :nickname
 
