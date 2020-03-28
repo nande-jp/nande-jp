@@ -22,20 +22,23 @@
       .row
         .col-12
           .d-flex.justify-content-between
-            .card.text-center style="width: 30%"
-              .card-body
-                h5.mb-0.font-weight-bold.small
-                  = link_to 'ランキング', rankings_path
+            = link_to rankings_path, style: "width: 30%"
+              .card.text-center
+                .card-body
+                  h5.mb-0.font-weight-bold.small
+                    | ランキング
 
-            .card.text-center style="width: 30%"
-              .card-body
-                h5.mb-0.font-weight-bold.small
-                  = link_to 'カテゴリー', categories_path
+            = link_to categories_path, style: "width: 30%"
+              .card.text-center
+                .card-body
+                  h5.mb-0.font-weight-bold.small
+                    | カテゴリー
 
-            .card.text-center style="width: 30%"
-              .card-body
-                h5.mb-0.font-weight-bold.small
-                  = link_to '年齢別', ages_path
+            = link_to ages_path, style: 'width: 30%'
+              .card.text-center
+                .card-body
+                  h5.mb-0.font-weight-bold.small
+                    | 年齢別
 
     - @posts.each do |post|
       - if post['display_type'] == HomeFeedService::QUESTION_DISPLAY_TYPE
