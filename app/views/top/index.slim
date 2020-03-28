@@ -50,6 +50,9 @@
         = render partial: 'shared/answer_card', locals: {answer: post['answer'], user: post['user'], question: post['question'], post_type: post['post_type'], is_bookmarked_by_current_user: post['is_bookmarked_by_current_user'], is_shared_by_current_user: post['is_shared_by_current_user'], children_profile: post['user']['children_profile'], shared_by: post['shared_by'], show_child_name: true}
 
     = link_to 'もっと見る', root_path(page: params.fetch(:page, 1).to_i + 1), class: 'btn btn-pop-dark btn-block btn-lg mt-4'
+
+    p.mt-4
+      | 時に大人を困らせる、子どもの質問。「nande」は、なんで？どうして？なぜなぜ期（質問期）の保育園児へのOK対応・NG対応や答え方を全国のママ・パパが掲載するサイトです。「なぜなぜ期」を上手に切り返して、好奇心や自己肯定感を育みましょう！
   .col-sm-4.d-none.d-sm-block
     = render partial: 'shared/sidenav/popular_questions', locals: {popular_questions: @popular_questions}
 

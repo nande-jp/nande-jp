@@ -7,7 +7,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     / link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap&subset=japanese" rel="stylesheet"
     link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700&amp;display=swap&amp;subset=japanese" rel="stylesheet"
-    = display_meta_tags site: 'nande', title: 'こどもの知的好奇心を向上するなぜなぜ期ギモン・回答集', description: 'こどもの「なんで？」を大切にするコミュニティ。こどもの知的好奇心を向上するなぜなぜ期ギモン・回答集。', reverse: true
+    = display_meta_tags site: 'nande', title: 'こどもの知的好奇心を向上するなぜなぜ期質問・答え方', description: 'こどもの知的好奇心を向上するなぜなぜ期質問・答え方の例。3歳から６歳、小学生のなぜなぜ期の質問の対応を全国のママ・パパが掲載！こどもの「なんで？」を大切にするコミュニティ。', reverse: true
 
     = display_meta_tags og: { title: 'こどもの「なんで？」を大切にするコミュニティ', description: 'こどもの「なんで？」を大切にするコミュニティ | こどもの知的好奇心を向上するなぜなぜ期ギモン・回答集', image: image_url('icon.png') }
 
@@ -48,18 +48,37 @@ html
 
       = yield
 
-  footer.font-small
+  footer.small style='border-top: 1px solid rgba(0, 0, 0, 0.1)'
     /! Footer Elements
     .container
       /! Call to action
-      ul.list-unstyled.list-inline.text-center.pt-3
-        li.list-inline-item
-          = link_to '利用規約', terms_path
-        li.list-inline-item
-          = link_to 'プライバシーポリシー', privacy_path
+      ul.list-inline.center-margin.row
+        li.col-12.col-md-3
+          ul.list-unstyled.text-center.pt-3
+            li
+              = link_to '人気ランキング', rankings_path
+            li
+              = link_to 'カテゴリ一覧', categories_path
+            li
+              = link_to '年齢別質問・答え方', ages_path
+        li.col-12.col-md-3
+          ul.list-unstyled.text-center.pt-3
+            - 3.upto(6) do |i|
+              li
+                = link_to "#{i}歳なぜなぜ期の質問・答え方", age_path(id: i)
+        li.col-12.col-md-3
+          ul.list-unstyled.text-center.pt-3
+            - Question.categories.keys.to_a.each do |category|
+              li
+                = link_to "#{I18n.t("activerecord.attributes.question.categories.#{category}")}に関する質問・答え方", category_path(id: category)
+        li.col-12.col-md-3
+          ul.list-unstyled.text-center.pt-3
+            li
+              = link_to '利用規約', terms_path
+            li
+              = link_to 'プライバシーポリシー', privacy_path
+            li
+              | © 2020
+              a href="https://nande.jp"  nande.jp
 
-    .text-center.pb-3
-      | © 2020
-      a href="https://nande.jp"  nande.jp
-    /! Copyright
   /! Footer
