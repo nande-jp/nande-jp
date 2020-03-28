@@ -41,8 +41,8 @@
                         span aria-hidden="true"  &times;
                     .modal-body
                       = simple_form_for Answer.new, method: :post, url: question_answers_path(params[:id]) do |f|
-                        = f.input :content, placeholder: 'こどもへの答え方を書きましょう', label: 'こどもへの答え方を書く', class: ''
-                        = f.input :points, label: '答えのポイント', placeholder: '他のパパ・ママに答えのポイントを教えましょう！'
+                        = f.input :content, placeholder: 'こどもへの答え方を書きましょう', label: 'こどもへの答え方を書く', class: '', input_html: {rows: 5}
+                        = f.input :points, label: '答えのポイント', placeholder: '他のパパ・ママに答えのポイントを教えましょう！', input_html: {rows: 5}
                         = f.button :submit, class: 'btn btn-pop-dark btn-block', value: 'ギモンに答える'
             - else
               = link_to 'ギモンに答える', new_user_session_path, class: 'btn btn-pop-dark btn-lg btn-block shadow', type: 'button'
