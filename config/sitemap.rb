@@ -28,7 +28,7 @@ SitemapGenerator::Sitemap.create do
 
   add questions_path, :priority => 0.2, :changefreq => 'daily'
   Question.find_each do |question|
-    add questions_path(question), :lastmod => question.answers_count > 0 ? question.answers.order(created_at: :desc).first.created_at : question.updated_at
+    add question_path(question), :lastmod => question.answers_count > 0 ? question.answers.order(created_at: :desc).first.created_at : question.updated_at
   end
 
   3.upto(6).each do |age|
