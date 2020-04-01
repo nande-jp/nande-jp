@@ -36,5 +36,10 @@ SitemapGenerator::Sitemap.create do
     add age_path(id: age), priority: 0.5, changefreq: 'daily'
   end
 
+  User.all.each do |user|
+    add user_path(user.id)
+    add user_bookmarks_path(user.id)
+  end
+
   add rankings_path, priority: 0.5, changefreq: 'weekly'
 end
