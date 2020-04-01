@@ -48,6 +48,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'activerecord-session_store'
 gem "breadcrumbs_on_rails"
+gem "browser"
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
