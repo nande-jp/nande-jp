@@ -31,6 +31,7 @@ SitemapGenerator::Sitemap.create do
     add question_path(question), :lastmod => question.answers_count > 0 ? question.answers.order(created_at: :desc).first.created_at : question.updated_at
   end
 
+  add ages_path, :priority => 0.2, :changefreq => 'daily'
   3.upto(6).each do |age|
     add age_path(id: age), priority: 0.5, changefreq: 'daily'
   end
